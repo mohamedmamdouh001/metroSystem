@@ -1,0 +1,14 @@
+.stdInput {
+    width: 250px;
+    height: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.275);
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+}
+.row .stdInput:focus,
+.row .stdInput:hover,
+.row .stdInput::selection{
+outline: 2px solid #7cde81bb;
+border-radius: 10px;
+-webkit-border-radius: 10px;
+}

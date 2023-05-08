@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="sassPract/css/normalize.css">
+        <link rel="stylesheet" href="sassPract/css/all.min.css">
+        <link rel="stylesheet" href="sassPract/css/bootstrap.min.css">
+        <link rel="stylesheet" href="sassPract/css/main.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+        <title>request</title>
+    </head>
+<body>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/all.min.js"></script>
+    <!-- Navigation bar at the top -->
+<div class="background">
+    <div>
+      <nav class="navbar navbar-expand-lg navbar-light  p-3 sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="sassPract/css/img/studentImg/istanbul-metro-logo.png" alt="" width="50" height="40" class="d-inline-block align-text-top ">
+            </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item p-2">
+                <a class="nav-link fs-4" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item p-2">
+                <a class="profileLogOut nav-link position-relative fs-4" aria-current="page" href="#">Log In</a>
+              </li>
+            </ul>
+          </div>
+        </div>    
+    </nav>                       
+      </div>
+    <div class="request mt-3 p-3 ms-4">
+        <div class="container">
+            <h3>Request</h3>
+            <hr>
+            <form class="row" name="requestForm">
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <label for="fullName" class=" m-2 ms-2"> Full Name </label>
+                    <br>
+                    <input type="text" class="stdInput p-2 m-2 " autofocus placeholder=" Your Name" id="fullName" required>
+                    <br>
+                    <label for="email" class=" m-2 ms-2"> Email </label>
+                    <br>
+                    <input type="email" class="stdInput p-2 m-2" placeholder=" Your Email" id="email" required>
+                    <br>
+                    <label for="national_Id" class=" m-2 ms-2"> National ID</label>
+                    <br>
+                    <input type="text" class="stdInput p-2 m-2" placeholder="Your National ID" id="national_Id" required
+                        pattern="[0-9]{14}">
+                    <br>
+                    <label for="phoneNumber" class="m-2 ms-2"> Phone </label>
+                    <br>
+                    <input type="text" class="stdInput p-2 m-2" placeholder="Your Mobile Number" id="phoneNumber" required
+                        pattern="[0-9]{11}">
+                    <br>
+                    <label for="address" class=" m-2 ms-2"> Address </label>
+                    <br>
+                    <input type="text" class="stdInput p-2 m-2" placeholder="Your Address" id="address" required>
+                </div>
+                <div class="col-sm-0 col-md-6 col-lg-4">
+                    <label for="eduStage" class="m-2 ms-2"> Education Stage </label>
+                    <br>
+                    <input type="text" class="stdInput p-2 m-2" id="eduStage" placeholder="Education Stage" required>
+                    <br>
+                    <label for="eduLevel" class=" m-2 ms-2"> Education Level </label>
+                    <br>
+                    <input type="text" class="stdInput p-2 m-2" id="eduLevel" required placeholder="Education Level">
+                    <br>
+                    <label for="eduAdminstration" class=" m-2 ms-2"> Education Adminstration </label>
+                    <br>
+                    <input type="text" class="stdInput p-2 m-2" step="" id="eduAdminstration" placeholder="Education Adminstration" required>
+                    <br>
+                    <label for="school" class=" m-2 ms-2"> School </label>
+                    <br>
+                    <input type="text" class="stdInput p-2 m-2" id="school" placeholder="Your School" required>
+                    <br>
+                    <label for="personalPhoto" class="personalPhoto ps-2 p-1 m-5 ms-2" text-white-50>  Your Personal Photo </label>
+                
+                    <input type="file" accept="image/*" class="file p-2 m-2" placeholder="Your photo" id="personalPhoto"  required>
+                </div>
+                <div class="col-sm-0 col-md-0 col-lg-4">
+                    <label for="idPhoto" class="idPhoto ps-2 p-1 mt-5 ms-2"> Your ID Photo </label>
+               
+                    <input type="file" accept="image/*" class="file" placeholder=" Your ID Photo" id="idPhoto" required>
+                 
+                    <label for="from" class="m-2 ms-2"> From </label>
+                    <br>
+                    <input type="text" class="stdInput p-2 m-2" id="from" required>
+                    <br>
+                    <label for="to" class="m-2 ms-2"> To </label>
+                    <br>
+                    <input type="text" class="stdInput p-2 mb-5 ms-2" id="to" required >
+                    <br>
+                   <div class="ms-5">
+                  <button for="submit" class="btnn rounded-pill" id="makeArequest">Make a request</button>
+                </div>
+                </div>
+            </form>    
+        </div>
+
+    </div>
+
+</div>
+<script src="js/all.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/master.js"></script>
+</body>
+
+</html>

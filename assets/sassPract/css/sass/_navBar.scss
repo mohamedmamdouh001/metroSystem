@@ -1,0 +1,17 @@
+.navbar .navbar-toggler {
+    color: black;
+    border-color: #878787;
+}
+.navbar .navbar-toggler:focus, 
+.navbar .navbar-toggler:hover,
+.navbar .navbar-toggler::selection {
+    border: 2px solid #878787;
+}
+.navbar .navbar-nav .nav-link {
+    color: #878787;
+}
+.navbar .navbar-nav .nav-link:focus,
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link::selection {
+    color: black;
+}

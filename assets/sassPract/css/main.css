@@ -1,0 +1,352 @@
+.navbar .navbar-toggler {
+  color: black;
+  border-color: #878787;
+}
+
+.navbar .navbar-toggler::-moz-selection {
+  border: 2px solid #878787;
+}
+
+.navbar .navbar-toggler:focus,
+.navbar .navbar-toggler:hover,
+.navbar .navbar-toggler::selection {
+  border: 2px solid #878787;
+}
+
+.navbar .navbar-nav .nav-link {
+  color: #878787;
+}
+
+.navbar .navbar-nav .nav-link::-moz-selection {
+  color: black;
+}
+
+.navbar .navbar-nav .nav-link:focus,
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link::selection {
+  color: black;
+}
+
+.btnn {
+  font-size: 20px;
+  padding: 1px 10px 1px 10px;
+  border: 2px solid #0ab69f;
+  background-color: #0ab69f;
+  color: white;
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+  cursor: pointer;
+}
+
+.btnn:hover {
+  background-color: transparent;
+  color: #0ab69f;
+}
+
+.stdInput {
+  width: 250px;
+  height: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.275);
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+}
+
+.row .stdInput::-moz-selection {
+  outline: 2px solid rgba(124, 222, 129, 0.7333333333);
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+
+.row .stdInput:focus,
+.row .stdInput:hover,
+.row .stdInput::selection {
+  outline: 2px solid rgba(124, 222, 129, 0.7333333333);
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+
+.moving-card {
+  background-color: #eee;
+  padding: 15px;
+  min-height: 100%;
+  border: 2px solid transparent;
+  border-radius: 5%;
+}
+
+.right-side {
+  background-color: white;
+}
+
+.logIn {
+  width: 100%;
+  padding: 25px;
+}
+
+.inputStyle {
+  border: none;
+  border-bottom: 3px solid #ddd;
+  width: 100%;
+  margin: 5px;
+  background-color: transparent;
+}
+
+.inputStyle:focus {
+  outline: none !important;
+  border: none;
+  border-bottom: 3px solid #0ab69f;
+  width: 100%;
+  margin: 5px;
+  background-color: transparent;
+}
+
+.inputStyle:focus::-moz-placeholder {
+  color: transparent;
+}
+
+.inputStyle:focus::placeholder {
+  color: transparent;
+}
+
+.inputStyle:hover::-moz-placeholder {
+  color: #0ab69f;
+  position: absolute;
+  top: -5px;
+  left: 0;
+}
+
+.inputStyle:hover::placeholder {
+  color: #0ab69f;
+  position: absolute;
+  top: -5px;
+  left: 0;
+}
+
+.logIn-signUpForm {
+  display: flex;
+  border: 2px solid #bbdae8;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 10px;
+  border-radius: 5%;
+  box-shadow: 4px 5px rgba(136, 136, 136, 0.1882352941);
+}
+
+#gender {
+  height: 25px;
+  background: #eee;
+  border: 2px solid #888888;
+  margin-top: 15px;
+}
+
+.hide {
+  display: none;
+}
+
+.verifyForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+.otpInput {
+  border: none;
+  border-bottom: 3px solid rgba(128, 128, 128, 0.764);
+  width: 50px;
+  margin: 5px;
+  background-color: transparent;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 100%;
+  z-index: -1;
+  background-color: #eeeeee;
+}
+
+.file {
+  display: none;
+}
+
+.idPhoto,
+.personalPhoto {
+  display: block;
+  cursor: pointer;
+  background-color: white;
+  color: #757575;
+  width: 250px;
+  height: 38px;
+  border: 1px solid rgba(0, 0, 0, 0.275);
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+}
+
+.row .idPhoto::-moz-selection {
+  outline: 2px solid #0ab6a1;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  cursor: pointer;
+}
+
+.row .idPhoto:focus,
+.row .idPhoto:hover,
+.row .idPhoto::selection {
+  outline: 2px solid #0ab6a1;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  cursor: pointer;
+}
+
+.row .idPhoto::after {
+  position: relative;
+  content: "UPLOAD";
+  right: -50px;
+  top: 2px;
+  padding: 7px;
+  background-color: #0ab6a1;
+  color: white;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  font-size: small;
+}
+
+.row .personalPhoto::after {
+  position: relative;
+  content: "UPLOAD";
+  right: -166px;
+  top: -23px;
+  padding: 7px;
+  background-color: #0ab6a1;
+  color: white;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  font-size: small;
+}
+
+.row .personalPhoto::-moz-selection {
+  outline: 2px solid #0ab6a1;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  cursor: pointer;
+}
+
+.row .personalPhoto:focus,
+.row .personalPhoto:hover,
+.row .personalPhoto::selection {
+  outline: 2px solid #0ab6a1;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  cursor: pointer;
+}
+
+.navbar .navbar-nav .profileLogOut::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 35px;
+  background-color: #878787;
+  top: 12px;
+  right: 5px;
+  left: 0;
+}
+
+.logoutIcon::-moz-selection {
+  border: 2px solid black;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+
+.logoutIcon::selection,
+.logoutIcon:focus,
+.logoutIcon:hover {
+  border: 2px solid black;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+
+.profileImage img {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+}
+
+.profileImage img::-moz-selection {
+  cursor: pointer;
+  border: 2px solid rgba(124, 222, 129, 0.7333333333);
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.profileImage img:focus,
+.profileImage img:hover,
+.profileImage img::selection {
+  cursor: pointer;
+  border: 2px solid rgba(124, 222, 129, 0.7333333333);
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.requestProfile .statueTable {
+  width: 100%;
+  height: 10px;
+  background-color: rgba(135, 135, 135, 0.4509803922);
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  outline: 1px solid #878787;
+}
+
+.landing {
+  background-image: url("img/studentImg/pexels-paul-ijsendoorn-1181202.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.landingLogo {
+  filter: invert(1);
+}
+
+.landingBtn {
+  font-size: 20px;
+  padding: 1px 10px 1px 10px;
+  border: 2px solid #ff9801;
+  background-color: #ff9801;
+  color: rgba(250, 235, 215, 0.7411764706);
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+}
+
+.landingBtn:hover {
+  background-color: transparent;
+  color: #ff9801;
+}
+
+.train {
+  filter: blur(1.5px);
+}
+
+.linkLanding:hover {
+  color: #ff9801 !important;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+}/*# sourceMappingURL=main.css.map */

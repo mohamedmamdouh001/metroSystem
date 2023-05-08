@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="sassPract/css/normalize.css">
+    <link rel="stylesheet" href="sassPract/css/all.min.css">
+    <link rel="stylesheet" href="sassPract/css/bootstrap.min.css">
+    <link rel="stylesheet" href="sassPract/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <title>profile</title>
+</head>
+<body>    
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/all.min.js"></script>
+    <!--Navigation bar -->
+<div class="background">
+    <nav class="navbar navbar-expand-lg navbar-light  p-3 sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="sassPract/css/img/studentImg/istanbul-metro-logo.png" alt="" width="50" height="40" class="d-inline-block align-text-top ">
+            </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item p-2">
+                <a class="nav-link fs-4" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item p-2 ">
+                <a class="profileLogOut nav-link position-relative fs-4" aria-current="page" href="#">LogOut</a>
+              </li>
+            </ul>
+            <a class="navbar-brand" href="#">
+                <img src="sassPract/css/img/studentImg/logout (1).png" alt="" width="40" height="35" class="logoutIcon d-none d-lg-inline-block p-1 ms-2">
+            </a>
+          </div>
+        </div>    
+    </nav>                       
+        <div class="profile mt-3 p-3">
+            <div class="container">
+                <div class="profileImage m-4 d-flex justify-content-center align-items-center">
+                    <img src="sassPract/css/img/studentImg/personal-information.png" alt="" width="90" height="100">
+                   </div>
+                 <form class="row m-4">
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                        <label for="fullName" class=" m-2 ms-2"> Full Name </label>
+                        <br>
+                        <input type="text" class="stdInput p-2 m-2 " autofocus placeholder=" Your Name" id="fullName" required>
+                        <br>
+                        <label for="email" class=" m-2 ms-2"> Email </label>
+                        <br>
+                        <input type="email" class=" stdInput p-2 m-2" placeholder=" Your Email" id="email" required>
+                        <br>
+                        <label for="phoneNumber" class="m-2 ms-2"> Phone </label>
+                        <br>
+                        <input type="text" class=" stdInput p-2 m-2" placeholder="Your Mobile Number" id="phoneNumber" required
+                            pattern="[0-9]{11}">
+                        <br>
+                    </div>
+                    <div class="col-sm-0 col-md-6 col-lg-4">
+                        <label for="national_Id" class=" m-2 ms-2"> National ID</label>
+                        <br>
+                         <input type="text" class="stdInput p-2 m-2" placeholder="Your National ID" id="national_Id" required
+                        pattern="[0-9]{14}">
+                        <br>
+                        <label for="uniName" class="m-2 ms-2"> University </label>
+                        <br>
+                        <input type="text" class="stdInput p-2 m-2" id="uniName" placeholder="Your University" required>
+                        <br>
+                        <label for="nearestStation" class=" m-2 ms-2"> Nearest Station </label>
+                        <br>
+                        <input type="text" class="stdInput p-2 m-2" id="nearestStation" required placeholder="Nearest Station">
+                        <br>                   
+                    </div>
+                    <div class="col-sm-0 col-md-0 col-lg-4">
+                        <label for="facultyName" class=" m-2 ms-2"> Faculty </label>
+                        <br>
+                        <input type="text" class="stdInput p-2 m-2" placeholder="Your Faculty" id="facultyName" required> 
+                        <br>
+                        <label for="address" class=" m-2 ms-2"> Address </label>
+                        <br>
+                        <input type="text" class="stdInput p-2 m-2" placeholder="Your Address" id="address" required>   
+                    </div>
+                </form>    
+            </div>
+        </div>
+      
+        <div class="requestProfile mt-3 p-3 ms-4">
+            <div class="container">
+                <h3>Request</h3>
+                <div class="table-responsive">
+                <table class="table text-center table-borderless statueTable mt-4">
+                   <thead>
+                    <tr> 
+                        <td class="p-3"> ID </td>
+                        <td class="p-3"> Name </td>
+                        <td class="p-3"> From </td>
+                        <td class="p-3"> To </td>
+                        <td class="p-3"> Status </td>
+                        <td class="p-3"> Action </td>
+                    </tr>
+                   </thead>
+                  </table>
+                </div> 
+            </div>         
+        </div>     
+</div>
+<script src="js/all.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/master.js"></script>
+</body>
+</html>

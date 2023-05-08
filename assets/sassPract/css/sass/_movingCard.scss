@@ -1,0 +1,64 @@
+$small: 300px;
+$medium: 900px;
+
+@import"./mixins";
+.moving-card{
+    background-color: #eee;
+    padding: 15px;
+    min-height: 100%;
+    border: 2px solid transparent;
+    border-radius: 5%;
+   
+    }
+    .right-side{
+    background-color: white;
+    }
+    .logIn{
+        width: 100%;
+        padding: 25px ;        
+    }
+    .inputStyle{
+    border: none;
+    border-bottom: 3px solid #ddd;
+    width: 100%;
+    margin: 5px;
+    background-color: transparent;
+}
+    .inputStyle:focus{
+           outline: none !important;
+    border:none;
+    border-bottom: 3px solid  #0ab69f;
+    width: 100%;
+    margin: 5px;
+    background-color: transparent;
+    
+}
+    .inputStyle:focus::placeholder{
+ color: transparent;
+}
+.inputStyle:hover::placeholder{
+    color: #0ab69f;
+    position: absolute;
+    top:-5px;
+    left: 0;
+}
+
+.logIn-signUpForm{
+    display: flex;
+    border: 2px solid #bbdae8;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 10px;
+    border-radius: 5%;
+    box-shadow: 4px 5px #88888830;
+}
+#gender{
+    height: 25px;
+    background: #eee;
+    border: 2px solid #888888;
+    margin-top: 15px;
+}
+.hide{
+    display: none;
+}

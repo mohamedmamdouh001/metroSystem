@@ -1,0 +1,46 @@
+.navbar .navbar-nav .profileLogOut::after{
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 35px;
+    background-color: #878787;
+    top: 12px;
+    right: 5px;
+    left: 0;
+} 
+.logoutIcon::selection,
+.logoutIcon:focus,
+.logoutIcon:hover{
+    border: 2px solid black;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+.profileImage img {
+    border-radius: 50%;
+    -webkit-border-radius:50%;
+}
+.profileImage img:focus,
+.profileImage img:hover, 
+.profileImage img::selection {
+    cursor: pointer;
+    border: 2px solid #7cde81bb;
+    border-radius: 50%;
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+    -ms-border-radius:50%;
+    -o-border-radius:50%;
+}
+.requestProfile .statueTable{
+    width: 100%;
+    height: 10px;
+    background-color: #87878773;
+    border-radius: 8px;
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
+    -ms-border-radius:8px;
+    -o-border-radius:8px;
+    outline: 1px solid #878787;
+}

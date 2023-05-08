@@ -12,7 +12,7 @@ if (isset($_POST['bt']))
     $result = mysqli_query($conn, $stmt);
     if ( mysqli_num_rows ($result)===1){
         echo "Login is success";
-        header("location:request.html");
+        header("location:../assets/request.php");
     } 
     else{
     echo'email or password is not correct try again';

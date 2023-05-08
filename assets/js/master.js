@@ -2,7 +2,7 @@ let myRightHand = document.querySelector(".rightHand");
 let myLeftHand = document.querySelector(".leftHand");
 let myRightCard = document.querySelector(".rightCard");
 let myLeftCard = document.querySelector(".leftCard");
-
+// let myButton = document.getElementById('subscribeButton');
 myLeftHand.addEventListener("click", () => {
    myLeftCard.classList.add("hide");
    myRightCard.classList.remove("hide");
@@ -11,6 +11,9 @@ myRightHand.addEventListener("click", () => {
    myRightCard.classList.add("hide");
    myLeftCard.classList.remove("hide");
 });
+// myButton.addEventListener('click', () => {
+//    window.location.href = "signup-login.php";
+// })
 
 
 

@@ -1,0 +1,15 @@
+.backgroundPayment {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: -1;
+    background: linear-gradient(
+      to right,
+      #eeeeee 0%,
+      #eeeeee 55%,
+      #f7f7f7 55%,
+      #f7f7f7 100%
+    );
+  }

@@ -12,3 +12,45 @@
     background-color:transparent;
     color:#0ab69f;
 }
+.dashBtnn{
+    font-size: 15px;
+    padding: 1px 10px 1px 10px;
+    border: 2px solid #153d77;  
+    background-color:#153d77;
+    color: white;
+    width: fit-content !important;
+    cursor: pointer;
+    font-weight: 400;
+}
+.dashBtnn:hover{
+    background-color:transparent;
+    color:#153d77;
+}
+.eduBtnn{
+    font-size: 15px;
+    padding: 1px 10px 1px 10px;
+    border: 2px solid #197278;  
+    background-color:#197278;
+    color: white;
+    width: fit-content !important;
+    cursor: pointer;
+    font-weight: 400;
+}
+.eduBtnn:hover{
+    background-color:transparent;
+    color:#197278;
+}
+.metoBtnn{
+    font-size: 15px;
+    padding: 1px 10px 1px 10px;
+    border: 2px solid #c1306f;  
+    background-color:#c1306f;
+    color: white;
+    width: fit-content !important;
+    cursor: pointer;
+    font-weight: 400;
+}
+.metoBtnn:hover{
+    background-color:transparent;
+    color:#c1306f;
+}

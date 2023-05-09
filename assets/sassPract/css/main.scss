@@ -1,4 +1,4 @@
-@import "./sass/variables";
+@use "./sass/variables"as*;
 
 @import "./sass/mixins";
 
@@ -18,7 +18,9 @@
 @import "./sass/request";
 @import "./sass/stdProfile";
 @import "./sass/landing";
-
+@import "./sass/dashboard";
+@import "./sass/metroSystem";
+@import"./sass/educationSystem";
 body{
     font-family: 'Montserrat', sans-serif;
 }

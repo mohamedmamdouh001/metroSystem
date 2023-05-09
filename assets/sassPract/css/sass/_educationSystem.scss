@@ -1,0 +1,33 @@
+.bgEdu{
+    background-color: #283d3b !important;
+}
+.colorEdu{
+color: #197278 !important;
+}
+.eduActive{
+    background-color:#197278;
+    border: none solid black;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    padding: 5px 85px  5px 45px;
+    margin-left: -30px;
+}
+.mainWrapperEdu{
+    align-items: stretch;
+display: flex;
+overflow: hidden;
+position: relative;
+width: 100%;
+}
+.mainWrapperEdu::before{
+    content:" ";
+    background-color:#283d3b;
+    height: 93px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+}

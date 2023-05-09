@@ -16,8 +16,8 @@ if(isset($_POST['request'])){
     $edu_stage = $_POST['edu_stage'];
     $edu_level = $_POST['edu_level'];
     $edu_auth = $_POST['edu_auth'];
-    $national_id_img = $_POST['national_id_img'];
-    $personal_img = $_POST['personal_img'];
+    $national_id_img = $_FILES['national_id_img'];
+    $personal_img = $_FILES['personal_img'];
     $start_station = $_POST['start_station'];
     $end_station = $_POST['end_station'];
 
@@ -35,4 +35,5 @@ if(isset($_POST['request'])){
                 `end_station` = '$end_station'
             WHERE `email` = '$user_email'";
     mysqli_query($conn, $sql);
+    echo "done";
 }

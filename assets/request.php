@@ -56,7 +56,7 @@ $row = mysqli_fetch_all($result);
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <label for="fullName" class=" m-2 ms-2"> Full Name </label>
                     <br>
-                    <input type="text" class="stdInput p-2 m-2 " autofocus placeholder=" Your Name" id="fullName" name="fullname" required>
+                    <input type="text" class="stdInput p-2 m-2 " autofocus placeholder=" Your Name" id="fullName" name="fullname"  >
                     <br>
                     <label for="email" class=" m-2 ms-2"> Email </label>
                     <br>
@@ -64,7 +64,7 @@ $row = mysqli_fetch_all($result);
                     if(!empty($_SESSION["email"])){
                       echo $_SESSION["email"];
                     }else{ ?>
-                      <input type="email" class="stdInput p-2 m-2" placeholder=" Your Email" id="email" name="email" required>
+                      <input type="email" class="stdInput p-2 m-2" placeholder=" Your Email" id="email" name="email"  >
                     <?php
                     }
                     ?>
@@ -75,7 +75,7 @@ $row = mysqli_fetch_all($result);
                     if(!empty($_SESSION["national_id"])){
                       echo $_SESSION["national_id"];
                     }else{ ?>
-                      <input type="text" class="stdInput p-2 m-2" placeholder="Your National ID" id="national_Id" name="national_id" required
+                      <input type="text" class="stdInput p-2 m-2" placeholder="Your National ID" id="national_Id" name="national_id"  
                         pattern="[0-9]{14}">
                     <?php
                     }
@@ -83,17 +83,17 @@ $row = mysqli_fetch_all($result);
                     <br>
                     <label for="phoneNumber" class="m-2 ms-2"> Phone </label>
                     <br>
-                    <input type="text" class="stdInput p-2 m-2" placeholder="Your Mobile Number" id="phoneNumber" name="phone" required
+                    <input type="text" class="stdInput p-2 m-2" placeholder="Your Mobile Number" id="phoneNumber" name="phone"  
                         >
                     <br>
                     <label for="address" class=" m-2 ms-2"> Address </label>
                     <br>
-                    <input type="text" class="stdInput p-2 m-2" placeholder="Your Address" id="address" name="address" required>
+                    <input type="text" class="stdInput p-2 m-2" placeholder="Your Address" id="address" name="address"  >
                 </div>
                 <div class="col-sm-0 col-md-6 col-lg-4">
                     <label for="eduStage" class="m-2 ms-2"> Education Stage </label>
                     <br>
-                    <!-- <input type="text" class="stdInput p-2 m-2" id="eduStage" placeholder="Education Stage" required> -->
+                    <!-- <input type="text" class="stdInput p-2 m-2" id="eduStage" placeholder="Education Stage"  > -->
                     <select class="stdInput p-1 m-1" id="eduStage" name="edu_stage">
                       <option>University</option>
                       <option>School</option>
@@ -101,7 +101,7 @@ $row = mysqli_fetch_all($result);
                     <br>
                     <label for="eduLevel" class=" m-2 ms-2"> Education Level </label>
                     <br>
-                    <!-- <input type="text" class="stdInput p-2 m-2" id="eduLevel" required placeholder="Education Level"> -->
+                    <!-- <input type="text" class="stdInput p-2 m-2" id="eduLevel"   placeholder="Education Level"> -->
                     <select class="stdInput p-1 m-1" id="eduStage" name="edu_level">
                       <option>1</option>
                       <option>2</option>
@@ -114,7 +114,7 @@ $row = mysqli_fetch_all($result);
                     <br>
                     <label for="eduAdminstration" class=" m-2 ms-2"> Education Adminstration / University </label>
                     <br>
-                    <!-- <input type="text" class="stdInput p-2 m-2" step="" id="eduAdminstration" placeholder="Education Adminstration" required> -->
+                    <!-- <input type="text" class="stdInput p-2 m-2" step="" id="eduAdminstration" placeholder="Education Adminstration"  > -->
                     <select class="stdInput p-1 m-1" id="eduStage" name="edu_auth">
                     <?php
                     foreach ($row as $key => $value) {
@@ -125,16 +125,16 @@ $row = mysqli_fetch_all($result);
                     <br>
                     <!-- <label for="school" class=" m-2 ms-2"> School </label>
                     <br>
-                    <input type="text" class="stdInput p-2 m-2" id="school" placeholder="Your School" required> -->
+                    <input type="text" class="stdInput p-2 m-2" id="school" placeholder="Your School"  > -->
                     <br>
                     <label for="personalPhoto" class="personalPhoto ps-2 p-1 m-5 ms-2" text-white-50>  Your National ID Photo    </label>
-                    <input type="file" accept="image/*" class="file p-2 m-2" placeholder="Your photo" id="personalPhoto" name="national_id_img"  required>
+                    <input type="file" accept="image/*" class="file p-2 m-2" placeholder="Your photo" id="personalPhoto" name="national_id_img"   >
                     <label for="personalPhoto" class="personalPhoto ps-2 p-1 m-5 ms-2" text-white-50>  Your Personal Photo </label>
-                    <input type="file" accept="image/*" class="file p-2 m-2" placeholder="Your photo" id="personalPhoto" name="personal_img"  required>
+                    <input type="file" accept="image/*" class="file p-2 m-2" placeholder="Your photo" id="personalPhoto" name="personal_img"   >
                 </div>
                 <div class="col-sm-0 col-md-0 col-lg-4">
                     <label for="idPhoto" class="idPhoto ps-2 p-1 mt-5 ms-2"> Your ID Photo </label>
-                    <input type="file" accept="image/*" class="file" placeholder=" Your ID Photo" id="idPhoto" name="id_photo" required>
+                    <input type="file" accept="image/*" class="file" placeholder=" Your ID Photo" id="idPhoto" name="id_photo"  >
                     <label for="from" class="m-2 ms-2"> From </label>
                     <br>
                     <select class="stdInput p-1 m-1" id="eduStage" name="start_station">

@@ -41,7 +41,17 @@ $row = mysqli_fetch_all($result);
                 <a class="nav-link fs-4" aria-current="page" href="#">Home</a>
               </li>
               <li class="nav-item p-2">
-                <a class="profileLogOut nav-link position-relative fs-4" aria-current="page" href="#">Log In</a>
+              <?php if(!empty($_SESSION['email'])){ ?>
+                <form method="get" action="">
+                <button class="profileLogOut nav-link position-relative fs-4" aria-current="page" style="border:0px;" type="submit" name="logout">Log Out</button>
+                </form>
+              <?php }
+              if(isset($_GET['logout'])){
+                unset($_SESSION['email']);
+                session_destroy();
+                header("location:signup-login.php");
+              }
+              ?> 
               </li>
             </ul>
           </div>
@@ -75,8 +85,8 @@ $row = mysqli_fetch_all($result);
                     if(!empty($_SESSION["national_id"])){
                       echo $_SESSION["national_id"];
                     }else{ ?>
-                      <input type="text" class="stdInput p-2 m-2" placeholder="Your National ID" id="national_Id" name="national_id"  
-                        pattern="[0-9]{14}">
+                      <input type="text" class="stdInput p-2 m-2" placeholder="Your National ID" id="national_Id" name="national_id" > 
+                         <!-- pattern="[0-9]{14}" -->
                     <?php
                     }
                     ?>
@@ -127,8 +137,8 @@ $row = mysqli_fetch_all($result);
                     <br>
                     <input type="text" class="stdInput p-2 m-2" id="school" placeholder="Your School"  > -->
                     <br>
-                    <label for="personalPhoto" class="personalPhoto ps-2 p-1 m-5 ms-2" text-white-50>  Your National ID Photo    </label>
-                    <input type="file" accept="image/*" class="file p-2 m-2" placeholder="Your photo" id="personalPhoto" name="national_id_img"   >
+                    <label for="nationalId" class="personalPhoto ps-2 p-1 m-5 ms-2" text-white-50>  Your National ID Photo    </label>
+                    <input type="file" accept="image/*" class="file p-2 m-2" placeholder="Your photo" id="nationalId" name="national_id_img"   >
                     <label for="personalPhoto" class="personalPhoto ps-2 p-1 m-5 ms-2" text-white-50>  Your Personal Photo </label>
                     <input type="file" accept="image/*" class="file p-2 m-2" placeholder="Your photo" id="personalPhoto" name="personal_img"   >
                 </div>

@@ -127,8 +127,9 @@ $row = mysqli_fetch_all($result);
                     <!-- <input type="text" class="stdInput p-2 m-2" step="" id="eduAdminstration" placeholder="Education Adminstration"  > -->
                     <select class="stdInput p-1 m-1" id="eduStage" name="edu_auth">
                     <?php
-                    foreach ($row as $key => $value) {
-                      echo "<option value={$value[0]}>"."{$value[0]}</option>";
+                    foreach ($row as $key => $value) { ?>
+                      <option value=<?php echo $value[0]; ?>> <?php echo $value[0] ?></option>;
+                      <?php
                     }
                     ?>
                     </select>

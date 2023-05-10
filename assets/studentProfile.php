@@ -1,3 +1,13 @@
+<?php
+session_start();
+$user_email = $_SESSION['email'];
+include "../config/config.php";
+$stmt = "SELECT * FROM `student` WHERE `email` = '$user_email'";
+$result = mysqli_query($conn, $stmt); 
+while ($row = mysqli_fetch_assoc($result)) {
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +42,17 @@
                 <a class="nav-link fs-4" aria-current="page" href="#">Home</a>
               </li>
               <li class="nav-item p-2 ">
-                <a class="profileLogOut nav-link position-relative fs-4" aria-current="page" href="#">LogOut</a>
+              <?php if(!empty($_SESSION['email'])){ ?>
+                <form method="get" action="">
+                <button class="profileLogOut nav-link position-relative fs-4" aria-current="page" style="border:0px;" type="submit" name="logout">Log Out</button>
+                </form>
+              <?php }
+              if(isset($_GET['logout'])){
+                unset($_SESSION['email']);
+                session_destroy();
+                header("location:signup-login.php");
+              }
+              ?> 
               </li>
             </ul>
             <a class="navbar-brand" href="#">
@@ -50,41 +70,37 @@
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <label for="fullName" class=" m-2 ms-2"> Full Name </label>
                         <br>
-                        <input type="text" class="stdInput p-2 m-2 " autofocus placeholder=" Your Name" id="fullName" required>
+                        <?php
+                            ?>
+                        <p><?=$row['full_name']; ?></p> 
                         <br>
                         <label for="email" class=" m-2 ms-2"> Email </label>
                         <br>
-                        <input type="email" class=" stdInput p-2 m-2" placeholder=" Your Email" id="email" required>
+                        <p><?=$row['email']; ?></p> 
                         <br>
                         <label for="phoneNumber" class="m-2 ms-2"> Phone </label>
                         <br>
-                        <input type="text" class=" stdInput p-2 m-2" placeholder="Your Mobile Number" id="phoneNumber" required
-                            pattern="[0-9]{11}">
+                        <p><?=$row['phone']; ?></p> 
                         <br>
                     </div>
                     <div class="col-sm-0 col-md-6 col-lg-4">
                         <label for="national_Id" class=" m-2 ms-2"> National ID</label>
                         <br>
-                         <input type="text" class="stdInput p-2 m-2" placeholder="Your National ID" id="national_Id" required
-                        pattern="[0-9]{14}">
+                        <p><?=$row['national_id']; ?></p> 
                         <br>
-                        <label for="uniName" class="m-2 ms-2"> University </label>
+                        <label for="uniName" class="m-2 ms-2"> Education Administration / University </label>
                         <br>
-                        <input type="text" class="stdInput p-2 m-2" id="uniName" placeholder="Your University" required>
+                        <p><?=$row['edu_auth']; ?></p> 
                         <br>
                         <label for="nearestStation" class=" m-2 ms-2"> Nearest Station </label>
                         <br>
-                        <input type="text" class="stdInput p-2 m-2" id="nearestStation" required placeholder="Nearest Station">
+                        <p><?=$row['near_station']; ?></p> 
                         <br>                   
                     </div>
                     <div class="col-sm-0 col-md-0 col-lg-4">
-                        <label for="facultyName" class=" m-2 ms-2"> Faculty </label>
-                        <br>
-                        <input type="text" class="stdInput p-2 m-2" placeholder="Your Faculty" id="facultyName" required> 
-                        <br>
                         <label for="address" class=" m-2 ms-2"> Address </label>
                         <br>
-                        <input type="text" class="stdInput p-2 m-2" placeholder="Your Address" id="address" required>   
+                        <p><?=$row['address'] ?></p> 
                     </div>
                 </form>    
             </div>
@@ -97,14 +113,22 @@
                 <table class="table text-center table-borderless statueTable mt-4">
                    <thead>
                     <tr> 
-                        <td class="p-3"> ID </td>
-                        <td class="p-3"> Name </td>
-                        <td class="p-3"> From </td>
-                        <td class="p-3"> To </td>
-                        <td class="p-3"> Status </td>
-                        <td class="p-3"> Action </td>
+                        <th class="p-3"> ID </th>
+                        <th class="p-3"> Name </th>
+                        <th class="p-3"> From </th>
+                        <th class="p-3"> To </th>
+                        <th class="p-3"> Status </th>
+                        <th class="p-3"> Action </th>
                     </tr>
                    </thead>
+                   <tr>
+                        <td><?=$row['student_id']; ?></td>
+                        <td><?=$row['full_name']; ?></td>
+                        <td><?=$row['start_station']; ?></td>
+                        <td><?=$row['end_station']; ?></td>
+                        <td><?=$row['request_status']; }?></td>
+                        <td></td>
+                   </tr>
                   </table>
                 </div> 
             </div>         

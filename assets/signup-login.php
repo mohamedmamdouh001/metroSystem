@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,7 +90,24 @@
            <!-- ################done##################### ------ -->
         <form class="signUp  " method="POST" action="../handlers/userRegister.handl.php">
           <div class="mb-3 mt-3">
-<h1 class="text-center">Join us</h1>
+            <h1 class="text-center">Join us</h1>
+            <?php
+            if (isset($_SESSION['error'])) {?>
+              <div class="alert alert-danger" role="alert">
+              <?= $_SESSION['error'] ?>
+            </div>
+            <?php
+            unset($_SESSION['error']);
+            }
+            if (isset($_SESSION['success'])) {?>
+              <div class="alert alert-success" role="alert">
+              <?= $_SESSION['success'] ?>
+            </div>
+            <?php
+            unset($_SESSION['success']);
+            }
+            ?>
+
             <div class="mb-3 d-flex">
               <input type="firstName" class="form-control inputStyle"placeholder="First name" id="exampleInputEmail1" aria-describedby="emailHelp" name="First_name">
               <input type="lastName" class="form-control inputStyle"placeholder="Last name" id="exampleInputEmail1" aria-describedby="emailHelp" name="Last_name">

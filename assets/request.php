@@ -1,9 +1,16 @@
 <?php
 session_start();
 include '../config/config.php';
+$user_email = $_SESSION['email'];
+$stmt = "SELECT * FROM `student` WHERE `email` = '$user_email'";
+$result = mysqli_query($conn, $stmt);
+$row = mysqli_fetch_assoc($result);
+if(!empty($row['start_station']) && !empty($row['end_station'])){
+  header("location:studentProfile.php");
+}
 $sql = "SELECT `name` FROM `education_athourity`";
 $result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_all($result);
+
 
 ?>
 <!DOCTYPE html>
@@ -127,16 +134,25 @@ $row = mysqli_fetch_all($result);
                     <!-- <input type="text" class="stdInput p-2 m-2" step="" id="eduAdminstration" placeholder="Education Adminstration"  > -->
                     <select class="stdInput p-1 m-1" id="eduStage" name="edu_auth">
                     <?php
-                    foreach ($row as $key => $value) { ?>
-                      <option value=<?php echo $value[0]; ?>> <?php echo $value[0] ?></option>;
+                    while ($row = mysqli_fetch_assoc($result)) { ?>
+                      <option value=<?= $row['name']; ?>> <?= $row['name']; ?></option>;
                       <?php
                     }
                     ?>
                     </select>
                     <br>
-                    <!-- <label for="school" class=" m-2 ms-2"> School </label>
+                    <label for="nearestStation" class=" m-2 ms-2"> Nearest Station </label>
                     <br>
-                    <input type="text" class="stdInput p-2 m-2" id="school" placeholder="Your School"  > -->
+                    <select class="stdInput p-1 m-2" id="nearestStation" name="near_station" >
+                      <?php 
+                      $stmt = "SELECT * FROM `metro_office`";
+                      $result = mysqli_query($conn, $stmt);
+                      while($row = mysqli_fetch_assoc($result)){ ?>
+                        <option value= " <?= $row['metro_station_name'] ?> " > <?= $row['metro_station_name'] ?> </option>
+                      <?php
+                      }
+                      ?>
+                    </select>
                     <br>
                     <label for="nationalId" class="personalPhoto ps-2 p-1 m-5 ms-2" text-white-50>  Your National ID Photo    </label>
                     <input type="file" accept="image/*" class="file p-2 m-2" placeholder="Your photo" id="nationalId" name="national_id_img"   >

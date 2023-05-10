@@ -16,21 +16,21 @@ if (isset($_POST['submit'])){
    $birthdate = $_POST['birthdate'];
    $gender = $_POST['gender'];
 
-   $sql = "SELECT COUNT(email) FROM `student` WHERE `email` = '$email' AND `password` = '$password' ";
+   $sql = "SELECT * FROM `student` WHERE `email` = '$email' ";
    $result = mysqli_query($conn, $sql);
    $count = mysqli_num_rows($result);
-   if($count == 1){
-      $reg="INSERT INTO `student`(full_name, password, confirm_password, national_id, email, gender, birthdate)
-            VALUES('$fullName', '$password', '$confirmPassword', '$nationalID', '$email', '$gender', '$birthdate')";
-   mysqli_query($conn,$reg); 
-   $_SESSION["email"] = $email;
-   $_SESSION["national_id"] = $nationalID;
-   echo'student registration done successfully'; //Session
-
+   if($count == 0){
+      $reg="INSERT INTO `student`(`full_name`, `password`, `national_id`, `email`, `gender`, `birthdate`)
+      VALUES('$fullName', '$password', '$nationalID', '$email', '$gender', '$birthdate')";
+      mysqli_query($conn, $reg); 
+      $_SESSION["email"] = $email;
+      $_SESSION["national_id"] = $nationalID;
+      $_SESSION["success"] = "Student registration done successfully"; //Session
+      header("location:../assets/signup-login.php");
    }
    else{
-      $_SESSION["error"] = "Student is already exist"; //Session
-
+      $_SESSION['error'] = "Student is already exist"; //Session
+      header("location:../assets/signup-login.php");
    }
 
 }

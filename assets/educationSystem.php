@@ -18,11 +18,11 @@
     <!-- start sidebar  --> 
     <nav id="sidebar" class="sidebar toggled bgEdu">
         <div class="sidebar-brand bgEdu" >
-            <img src="/assets/sassPract/css/img/adminIcons/istanbul-metro-logo.png" class="w-25" alt="" style="filter: invert();"> ETRO
+            <img src="sassPract/css/img/adminIcons/istanbul-metro-logo.png" class="w-25" alt="" style="filter: invert();"> ETRO
         </div>
         <div class="sidebar-content bgEdu">
             <div class="sidebar-user bgEdu">
-                <img src="/assets/sassPract/css/img/adminIcons/personal-information.png " class="w-25 img-fluid rounded-circle mb-2" alt="admin">
+                <img src="sassPract/css/img/adminIcons/personal-information.png " class="w-25 img-fluid rounded-circle mb-2" alt="admin">
                 <div class="fw-bold text-white">admin name</div>
                 <p class="text-white">admin</p>
             </div>
@@ -57,12 +57,9 @@
     </h1>
    <div class="reqTypeHolder d-flex">
 <h3 class="allRequsets ms-3 text-black-50 reqActive" style="cursor: pointer;">Requsets</h3>
-<h3 class="pendingRequests ms-3 text-black-50" style="cursor: pointer;">Pending</h3>
-<h3 class="completedRequsets ms-3 text-black-50"  style="cursor: pointer;">Completed</h3>
    </div>
    <h3 class="ms-3 mt-3">
     <form action="">
-  
         <input type="search " placeholder="   search" class="rounded-pill reqSearch" name="" id="">
     </form>
 </h3>
@@ -76,9 +73,9 @@
               <th>From</th>
               <th>To</th>
               <th>Status</th>
-              <th>view</th>
+              <th>View</th>
               <th>Confirmation</th>
-              <th>reject</th>
+              <th>Rejection</th>
             </tr>
             <tr>
               <td>1920011</td>
@@ -88,7 +85,7 @@
               <td>accepted</td>
               <td><button class="viewBtn eduBtnn rounded-pill ">View</button></td>
               <td> <button class="deleteBtn eduBtnn rounded-pill ">Confirm</button> </td>
-              <td> <button class="deleteBtn eduBtnn rounded-pill ">reject</button> </td>
+              <td> <button class="deleteBtn eduBtnn rounded-pill ">Reject</button> </td>
             </tr>
             <tr>
               <td>1920011</td>

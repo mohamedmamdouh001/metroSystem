@@ -45,7 +45,7 @@
 <div class="row  mt-5">
   <div class="col-lg-8 col-md-6 col-sm-12 p-5">
     <h1  class="p-3 text-white-50"> <b>Get METRO subscription in a faster way</b> </h1>
-    <button class="mt-3 ms-3 landingBtn rounded-pill " id="subscribeButton">Subscribe now</button>
+    <form method="post" action="signup-login.php"><button class="mt-3 ms-3 landingBtn rounded-pill " id="subscribeButton">Subscribe now</button> </form>
   </div>
   <div class="col-lg-4 col-md-6 col-sm-12">
     <img src="sassPract/css/img/studentImg/train.png" alt="" width="350" height="400" class=" train">

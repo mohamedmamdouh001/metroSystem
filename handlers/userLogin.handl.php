@@ -16,7 +16,7 @@ if (isset($_POST['bt']))
         header("location:../assets/request.php");
     } 
     else{
-    echo'email or password is not correct try again';
+    $_SESSION['error'] = 'Email or Password is not correct, Try again';
     }
 }
 

@@ -1,6 +1,9 @@
 <?php
 session_start();
 $user_email = $_SESSION['email'];
+if (empty($user_email)) {
+    header("location:request.php");
+}
 include "../config/config.php";
 $stmt = "SELECT * FROM `student` WHERE `email` = '$user_email'";
 $result = mysqli_query($conn, $stmt); 
@@ -64,7 +67,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         <div class="profile mt-3 p-3">
             <div class="container">
                 <div class="profileImage m-4 d-flex justify-content-center align-items-center">
-                    <img src="sassPract/css/img/studentImg/personal-information.png" alt="" width="90" height="100">
+                    <img src="../student_img/personal_img/<?php $row['personal_img'];?>" alt="Personal Photo" width="90" height="100">
                    </div>
                  <form class="row m-4">
                     <div class="col-sm-12 col-md-6 col-lg-4">

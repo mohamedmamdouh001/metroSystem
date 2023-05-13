@@ -2,11 +2,17 @@
 session_start();
 include '../config/config.php';
 $user_email = $_SESSION['email'];
+
 $stmt = "SELECT * FROM `student` WHERE `email` = '$user_email'";
 $result = mysqli_query($conn, $stmt);
 $row = mysqli_fetch_assoc($result);
 if(!empty($row['start_station']) && !empty($row['end_station'])){
   header("location:studentProfile.php");
+  die();
+}
+if(empty($user_email)){
+  header("location:signup-login.php");
+  die();
 }
 $sql = "SELECT `name` FROM `education_athourity`";
 $result = mysqli_query($conn, $sql);
@@ -70,10 +76,19 @@ $result = mysqli_query($conn, $sql);
             <h3>Request</h3>
             <hr>
             <form class="row" name="requestForm" method="post" enctype="multipart/form-data" action="../handlers/userRequest.handl.php" >
+            <?php 
+            if (isset($_SESSION['error'])) {?>
+              <div class="alert alert-danger" role="alert">
+              <?= $_SESSION['error'] ?>
+            </div>
+            <?php
+            unset($_SESSION['error']);
+            }
+            ?>
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <label for="fullName" class=" m-2 ms-2"> Full Name </label>
                     <br>
-                    <input type="text" class="stdInput p-2 m-2 " autofocus placeholder=" Your Name" id="fullName" name="fullname"  >
+                    <input type="text" class="stdInput p-2 m-2 " autofocus placeholder=" Your Name" id="fullName" name="fullname" required >
                     <br>
                     <label for="email" class=" m-2 ms-2"> Email </label>
                     <br>
@@ -81,37 +96,29 @@ $result = mysqli_query($conn, $sql);
                     if(!empty($_SESSION["email"])){
                       echo $_SESSION["email"];
                     }else{ ?>
-                      <input type="email" class="stdInput p-2 m-2" placeholder=" Your Email" id="email" name="email"  >
+                      <input type="email" class="stdInput p-2 m-2" placeholder=" Your Email" id="email" name="email" required >
                     <?php
                     }
                     ?>
                     <br>
                     <label for="national_Id" class=" m-2 ms-2"> National ID</label>
                     <br>
-                    <?php
-                    if(!empty($_SESSION["national_id"])){
-                      echo $_SESSION["national_id"];
-                    }else{ ?>
-                      <input type="text" class="stdInput p-2 m-2" placeholder="Your National ID" id="national_Id" name="national_id" > 
+                      <input type="text" class="stdInput p-2 m-2" placeholder="Your National ID" id="national_Id" name="national_id" required> 
                          <!-- pattern="[0-9]{14}" -->
-                    <?php
-                    }
-                    ?>
                     <br>
                     <label for="phoneNumber" class="m-2 ms-2"> Phone </label>
                     <br>
-                    <input type="text" class="stdInput p-2 m-2" placeholder="Your Mobile Number" id="phoneNumber" name="phone"  
-                        >
+                    <input type="text" class="stdInput p-2 m-2" placeholder="Your Mobile Number" id="phoneNumber" name="phone"  required>
                     <br>
                     <label for="address" class=" m-2 ms-2"> Address </label>
                     <br>
-                    <input type="text" class="stdInput p-2 m-2" placeholder="Your Address" id="address" name="address"  >
+                    <input type="text" class="stdInput p-2 m-2" placeholder="Your Address" id="address" name="address"  required>
                 </div>
                 <div class="col-sm-0 col-md-6 col-lg-4">
                     <label for="eduStage" class="m-2 ms-2"> Education Stage </label>
                     <br>
                     <!-- <input type="text" class="stdInput p-2 m-2" id="eduStage" placeholder="Education Stage"  > -->
-                    <select class="stdInput p-1 m-1" id="eduStage" name="edu_stage">
+                    <select class="stdInput p-1 m-1" id="eduStage" name="edu_stage" required>
                       <option>University</option>
                       <option>School</option>
                     </select>
@@ -119,7 +126,7 @@ $result = mysqli_query($conn, $sql);
                     <label for="eduLevel" class=" m-2 ms-2"> Education Level </label>
                     <br>
                     <!-- <input type="text" class="stdInput p-2 m-2" id="eduLevel"   placeholder="Education Level"> -->
-                    <select class="stdInput p-1 m-1" id="eduStage" name="edu_level">
+                    <select class="stdInput p-1 m-1" id="eduStage" name="edu_level" required>
                       <option>1</option>
                       <option>2</option>
                       <option>3</option>
@@ -132,7 +139,7 @@ $result = mysqli_query($conn, $sql);
                     <label for="eduAdminstration" class=" m-2 ms-2"> Education Adminstration / University </label>
                     <br>
                     <!-- <input type="text" class="stdInput p-2 m-2" step="" id="eduAdminstration" placeholder="Education Adminstration"  > -->
-                    <select class="stdInput p-1 m-1" id="eduStage" name="edu_auth">
+                    <select class="stdInput p-1 m-1" id="eduStage" name="edu_auth" required>
                     <?php
                     while ($row = mysqli_fetch_assoc($result)) { ?>
                       <option value=<?= $row['name']; ?>> <?= $row['name']; ?></option>;
@@ -143,7 +150,7 @@ $result = mysqli_query($conn, $sql);
                     <br>
                     <label for="nearestStation" class=" m-2 ms-2"> Nearest Station </label>
                     <br>
-                    <select class="stdInput p-1 m-2" id="nearestStation" name="near_station" >
+                    <select class="stdInput p-1 m-2" id="nearestStation" name="near_station" required >
                       <?php 
                       $stmt = "SELECT * FROM `metro_office`";
                       $result = mysqli_query($conn, $stmt);
@@ -155,16 +162,16 @@ $result = mysqli_query($conn, $sql);
                     </select>
                     <br>
                     <label for="nationalId" class="personalPhoto ps-2 p-1 m-5 ms-2" text-white-50>  Your National ID Photo    </label>
-                    <input type="file" accept="image/*" class="file p-2 m-2" placeholder="Your photo" id="nationalId" name="national_id_img"   >
+                    <input type="file" accept="image/*" class="file p-2 m-2" placeholder="Your photo" id="nationalId" name="national_id_img" required  >
                     <label for="personalPhoto" class="personalPhoto ps-2 p-1 m-5 ms-2" text-white-50>  Your Personal Photo </label>
-                    <input type="file" accept="image/*" class="file p-2 m-2" placeholder="Your photo" id="personalPhoto" name="personal_img"   >
+                    <input type="file" accept="image/*" class="file p-2 m-2" placeholder="Your photo" id="personalPhoto" name="personal_img" required  >
                 </div>
                 <div class="col-sm-0 col-md-0 col-lg-4">
                     <label for="idPhoto" class="idPhoto ps-2 p-1 mt-5 ms-2"> Your ID Photo </label>
-                    <input type="file" accept="image/*" class="file" placeholder=" Your ID Photo" id="idPhoto" name="id_photo"  >
+                    <input type="file" accept="image/*" class="file" placeholder=" Your ID Photo" id="idPhoto" name="edu_id_photo" required >
                     <label for="from" class="m-2 ms-2"> From </label>
                     <br>
-                    <select class="stdInput p-1 m-1" id="eduStage" name="start_station">
+                    <select class="stdInput p-1 m-1" id="eduStage" name="start_station" required>
                       <option value="Helwan">Helwan</option>
                       <option value="Ain Helwan">Ain Helwan</option>
                       <option value="Helwan University">Helwan University</option>
@@ -249,7 +256,7 @@ $result = mysqli_query($conn, $sql);
                     <br>
                     <label for="to" class="m-2 ms-2"> To </label>
                     <br>
-                    <select class="stdInput p-1 m-1" id="eduStage" name="end_station">
+                    <select class="stdInput p-1 m-1" id="eduStage" name="end_station" required>
                       <option value="Helwan">Helwan</option>
                       <option value="Ain Helwan">Ain Helwan</option>
                       <option value="Helwan University">Helwan University</option>

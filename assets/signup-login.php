@@ -57,20 +57,18 @@ session_start();
  <!-- ############### sign in start ##################### ------ -->
         <div class="logIn-signUpForm ps-3 ">
           <h1 class="text-center pt-5 me-3">Welcome</h1>
-        <form class="logIn  " method="post" action="../handlers/userLogin.handl.php">
+        <form class="logIn  " method="post" action="../handlers/userLogin.handl.php" onSubmit="return validateLogIn()">
           <div class="mb-3 mt-3">
-            <input type="email" class="form-control Email inputStyle"placeholder="Email address" id="exampleInputEmail1" aria-describedby="emailHelp"name="email" >
+            <input type="text" class="form-control Email inputStyle"placeholder="Email address" id="emailLogIn" aria-describedby="emailHelp"name="email" >
             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
           </div>
           <div class="mb-3">
          
-            <input type="password" class="form-control Password inputStyle" placeholder="Password" id="exampleInputPassword1" name="password">
+            <input type="password" class="form-control Password inputStyle" placeholder="Password" id="passwordLogIn" name="password">
           </div>
+          <small id="requiredLogIn" class="text-danger" style="display: none;" >All fields are required Please complete the form</small>
           
-          <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-          </div>
+       
           <a href="" class="text-black-50"><h3></h3>Forget password?</h2></a>
         <div class="text-center"><button type="submit" class="btnn rounded-pill me-3 mt-5 " name="bt">Log in</button> </div> 
         </form>
@@ -88,7 +86,7 @@ session_start();
        <!-- ###############sign in end###################### ------ -->
         <div class="logIn-signUpForm p-3 ">
            <!-- ################done##################### ------ -->
-        <form class="signUp  " method="POST" action="../handlers/userRegister.handl.php">
+        <form class="signUp  " id="signUp" method="POST" action="../handlers/userRegister.handl.php" onSubmit=" return validateSignUp()">
           <div class="mb-3 mt-3">
             <h1 class="text-center">Join us</h1>
             <?php
@@ -109,28 +107,33 @@ session_start();
             ?>
 
             <div class="mb-3 d-flex">
-              <input type="firstName" class="form-control inputStyle"placeholder="First name" id="exampleInputEmail1" aria-describedby="emailHelp" name="First_name">
-              <input type="lastName" class="form-control inputStyle"placeholder="Last name" id="exampleInputEmail1" aria-describedby="emailHelp" name="Last_name">
+              <input type="firstName" class="form-control inputStyle"placeholder="First name" id="firstNameSignUp" aria-describedby="emailHelp" name="First_name">
+              <input type="lastName" class="form-control inputStyle"placeholder="Last name" id="lastNameSignUp" aria-describedby="emailHelp" name="Last_name">
             </div>
+            <small class="text-danger" id="lengthNameErrorSignUp" style="display: none;" >User name must be between 3-20 character</small> <!-- Error message  -->
           <div class="mb-3">
-            <input type="email" class="form-control Email inputStyle"placeholder="Email address" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" >
-         
+            <input type="text" class="form-control Email inputStyle"placeholder="Email address" id="emailSignUp" aria-describedby="emailHelp" name="email" >
           </div>
+          <small class="text-danger" id="emailErrorSignUp" style="display: none;" >Please enter a valid email address</small><!-- Error message  -->   
           <div class="mb-3 d-flex">
-            <input type="password" class="form-control Password inputStyle" placeholder="Password" id="exampleInputPassword1" name="password">
-            <input type="password" class="form-control confirmPassword inputStyle" placeholder="Confirm Password" id="exampleInputPassword1" name="confirm_password">
+            <input type="password" class="form-control Password inputStyle" placeholder="Password" id="PasswordSignUp" name="password">
+            <input type="password" class="form-control confirmPassword inputStyle" placeholder="Confirm Password" id="conPasswordSignUp" name="confirm_password">
           </div>
+          <small class="text-danger" id="errorConPasswordSignUp" style="display: none;">Password does not match</small><!-- Error message  -->
+          <small class="text-danger" id="errorPasswordSignUp" style="display: none;">Password must be with 8-20 character</small><!-- Error message  -->
           <div class="mb-3">
-            <input type="number" class="form-control ssd inputStyle" placeholder="National Id" id="exampleInputPassword1"name="national_id">
+            <input type="number" class="form-control  inputStyle" placeholder="National Id" id="nationalIdSignUp"name="national_id">
           </div>
+          <small class="text-danger" id="nationalIdErrorSigup" style="display: none;" >National Id must be 14 number </small><!-- Error message  -->
           <div class="mb-3 d-flex justify-content-center">
-            <input type="date" class="form-control age inputStyle w-50 " placeholder="Age " id="exampleInputPassword1" name="birthdate">
+            <input type="date" class="form-control age inputStyle w-50 " placeholder="Age " id="dateSignUp" name="birthdate">
         
           <select  id="gender" name="gender">
        <option value="male">male</option>
        <option value="female">female</option>
        </select>
           </div>
+          <small class="text-danger " id="requiredSignup" style="display: none;">All fields are required Please complete the form</small> <!-- Error message -->
          
         <div class="text-center"><button type="submit" class="btnn rounded-pill me-2 " name="submit">Next to create</button> </div> 
         </form>
@@ -145,6 +148,8 @@ session_start();
   <script src="js/all.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/master.js"></script>
+  <script src="js/validationSignup.js"></script>
+  <script src="js/validationLogIn.js"></script>
     
 </body>
 </html>

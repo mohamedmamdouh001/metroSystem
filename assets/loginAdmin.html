@@ -20,7 +20,7 @@
   
     <div class="container h-100 mt-3">
       <div class="row  h-100 justify-content-center align-items-center">
-        <form class="col-md-10 " action="../handlers//adminLogin.handl.php" method="post">
+        <form class="col-md-10 " action="../handlers//adminLogin.handl.php" method="post" onsubmit="return validateLogInAdmin()">
           <div class="AppForm shadow-lg ">
             <div class="row">
               <div
@@ -32,7 +32,7 @@
                     <input
                       type="text"
                       class="form-control "
-                      id="username"
+                      id="userNameAdmin"
                       placeholder="Username"
                     />
                   </div>
@@ -40,10 +40,11 @@
                     <input
                       type="password"
                       class="form-control "
-                      id="password"
+                      id="passwordAdmin"
                       placeholder="Password"
                     />
                   </div>
+                  <small class="text-danger" id="requiredLogInAdmin" style="display: none;">All fields are required Please complete the form</small>
                   <div class="row mt-4 mb-4">
                     <div class="col-md-6"></div>
                   </div>
@@ -71,5 +72,7 @@
     </div>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/all.min.js"></script>
+    <script src="js/validationAdmin.js"></script>
+
   </body>
 </html>

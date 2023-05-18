@@ -25,9 +25,9 @@ $mail = new PHPMailer(true);
     $mail->setFrom('metrosystem740@gmail.com');
     $mail->addAddress($_POST['email']);     
     $mail->isHTML(true);       
-    $key= rand (10000,99999); // hna ya de7a 7ot rkm ely m7tago   
-    $mail->Subject = 'code verification'.$key;
-    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+    $key= rand (1000,9999);    
+    $mail->Subject = 'METRO FOR STUDENTS';
+    $mail->Body    = 'code verification'.$key;
 
     $mail->send();
     echo 'Message has been sent';

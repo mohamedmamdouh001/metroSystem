@@ -1,3 +1,7 @@
+<?php
+include '../config/config.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,8 +63,10 @@
 <h3 class="allRequsets ms-3 text-black-50 reqActive" style="cursor: pointer;">Requsets</h3>
    </div>
    <h3 class="ms-3 mt-3">
-    <form action="">
-        <input type="search " placeholder="   search" class="rounded-pill reqSearch" name="" id="">
+    <form action="" method="post" >
+        <input type="search " placeholder=" Type to search" class="rounded-pill reqSearch" name="search" id="">
+        <button type="submit" class="btn btn-success" name="search-btn" >Search</button>
+        <input type="submit" class="btn btn-success" value="Reset Results" name="reset-btn" >
     </form>
 </h3>
 </div>
@@ -77,36 +83,79 @@
               <th>Confirmation</th>
               <th>Rejection</th>
             </tr>
-            <tr>
-              <td>1920011</td>
-              <td>Ahmed</td>
-              <td>Giza</td>
-              <td>helwan</td>
-              <td>accepted</td>
-              <td><button class="viewBtn eduBtnn rounded-pill ">View</button></td>
-              <td> <button class="deleteBtn eduBtnn rounded-pill ">Confirm</button> </td>
-              <td> <button class="deleteBtn eduBtnn rounded-pill ">Reject</button> </td>
-            </tr>
-            <tr>
-              <td>1920011</td>
-              <td>Ahmed</td>
-              <td>Giza</td>
-              <td>helwan</td>
-              <td>accepted</td>
-              <td><button  class="rounded-pill viewBtn eduBtnn "> View</button></td>
-              <td> <button  class="deleteBtn eduBtnn rounded-pill ">Confirm</button> </td>
-              <td> <button  class="deleteBtn eduBtnn rounded-pill ">reject</button> </td>
-            </tr>
-            <tr>
-              <td>1920011</td>
-              <td>Ahmed</td>
-              <td>Giza</td>
-              <td>helwan</td>
-              <td>accepted</td>
-              <td><button  class="viewBtn eduBtnn rounded-pill ">View</button></td>
-              <td> <button  class="deleteBtn eduBtnn rounded-pill ">Confirm</button> </td>
-              <td> <button  class="deleteBtn eduBtnn rounded-pill ">reject</button> </td>
-            </tr>
+            <?php
+                if(isset($_POST['search-btn'])){
+                    $search_term = $_POST['search'];
+                    $sql = "SELECT * FROM student WHERE full_name LIKE '%$search_term%'";
+                    $result = mysqli_query($conn, $sql);
+                    while($row = mysqli_fetch_assoc($result)){ 
+                        $link = 'viewStudent.php?student_id=' . $row['student_id']; ?>
+                    <tr>
+                    <td> <?= $row['student_id'] ?> </td>
+                    <td><?= $row['full_name'] ?></td>
+                    <td><?= $row['start_station'] ?></td>
+                    <td><?= $row['end_station'] ?></td>
+                    <td><?= $row['request_status'] ?></td>
+                    <td><a href= "viewStudent.php?student_id=<?= $row['student_id'] ?>" class="viewBtn eduBtnn rounded-pill ">View</a></td>
+                    <td> <button class="deleteBtn eduBtnn rounded-pill ">Confirm</button> </td>
+                    <td> <button class="deleteBtn eduBtnn rounded-pill ">Reject</button> </td>
+                  </tr>
+                <?php
+                    }
+                }
+                elseif(isset($_POST['reset-btn'])){
+                    unset($_POST['search-btn']);
+                    $sql = "SELECT * FROM student WHERE request_status = 'Under education authority review' ";
+                    $result = mysqli_query($conn, $sql);
+                    while($row = mysqli_fetch_assoc($result)){ ?>
+                        <tr>
+                          <td><?= $row['student_id'] ?></td>
+                          <td><?= $row['full_name'] ?></td>
+                          <td><?= $row['start_station'] ?></td>
+                          <td><?= $row['end_station'] ?></td>
+                          <td><?= $row['request_status'] ?></td>
+                          <td><a href= "viewStudent.php?student_id=<?= $row['student_id'] ?>" class="viewBtn eduBtnn rounded-pill ">View</a></td>
+                          <td> <button class="deleteBtn eduBtnn rounded-pill ">Confirm</button> </td>
+                          <td> <button class="deleteBtn eduBtnn rounded-pill ">Reject</button> </td>
+                        </tr>
+                <?php
+                }}
+                else{
+                    $sql = "SELECT * FROM student WHERE request_status = 'Under education authority review'";
+                    $result = mysqli_query($conn, $sql);
+                    while($row = mysqli_fetch_assoc($result)){
+                        $_SESSION['student_id'] = $row['student_id']; ?>
+                    
+                    <form action="" method="post" > <?php
+                        if (isset($_POST['confirm'])) {
+                        $accepted_request = "Aceepted";
+                        $student_id = $_SESSION['student_id'];
+                        $sql = "UPDATE `student`
+                                SET `request_status` = '$accepted_request'
+                                WHERE `student_id` = '$student_id'";
+                        try{
+                            mysqli_query($conn, $sql);
+                        }
+                        catch(Exception $e){
+                            echo $e->getMessage();
+                        }
+                    
+                }?>
+                        <tr>
+                          <td><?= $row['student_id'] ?></td>
+                          <td><?= $row['full_name'] ?></td>
+                          <td><?= $row['start_station'] ?></td>
+                          <td><?= $row['end_station'] ?></td>
+                          <td><?= $row['request_status'] ?></td>
+                          <td><a href= "viewStudent.php?student_id=<?= $row['student_id'] ?>" class="viewBtn eduBtnn rounded-pill " >View</a></td>
+                          <td>  <button type="submit" name="confirm" class="deleteBtn eduBtnn rounded-pill ">Confirm</button> </td>
+                          <td> <button class="deleteBtn eduBtnn rounded-pill ">Reject</button> </td>
+                        </tr>
+                    </form>
+            <?php   } 
+                }
+                
+                ?>
        
           </table>
     </div>

@@ -1,32 +1,51 @@
 
 <?php
-include '../config/config.php'
+include '../config/config.php';
+session_start();
 ?>
 <?php
-session_start();
-if (isset($_POST['systemLogin'])){
-   $id    = ($_POST['admin_id']);
-   $password = ( $_POST['password']);
+if(isset($_POST['login'])){
+    $id = $_POST['id'];
+    $password = $_POST['password'];
+    $role = $_POST['role'];
 
-   $stmt = "SELECT * FROM `admin` WHERE `admin_id` = '$id' && `password` = '$password'";
-   $res= mysqli_query($conn,$stmt);
-   $row= mysqli_fetch_assoc($res);
 
-   if (mysqli_num_rows ($res) === 1){
-      if (($row["role"]) == "system_admin"){
-      echo "you are system admin in our system";
-      }
+    if ($role === "system_admin") {
+        $table_name = "admin";
+    } elseif ($role === "education_admin") {
+        $table_name = "education_athourity";
+    } elseif ($role === "metro_admin") {
+        $table_name = "metro_office";
+    } else {
 
-   elseif( ($row["role"]) == "metro_admin"){
-      echo" you are metro admin check requests";
-      }
+    }
 
-   else if (($row["role"]) == "education_admin"){ 
-      echo  "you are education_admin valdiate request";
-      }
-   }
-   else{
-      echo'wrong admin';
-   }
+
+    $sql = "SELECT * FROM `$table_name` WHERE id='$id' AND password='$password'";
+
+
+    $result = mysqli_query($conn,$sql);
+
+
+    if (mysqli_num_rows($result) > 0) {
+
+        if($table_name == "admin"){
+            $_SESSION['admin_id'] = $id;
+            header("location:../assets/dashboard.php");
+        } 
+        elseif($table_name == "education_athourity"){
+            $_SESSION['education_id'] = $id;
+            header("location:../assets/educationSystem.php");
+        } 
+        elseif($table_name == "metro_office"){
+            $_SESSION['metro_id'] = $id;
+            header("location:../assets/metroSystem.php");
+        }
+    } else {
+       $_SESSION['error'] = "Wrong Data, Please check ID or Password or The Role.";
+       header("location:../assets/loginAdmin.php");
+    }
+
+    $conn->close();
 }
 ?>

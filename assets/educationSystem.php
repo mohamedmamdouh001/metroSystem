@@ -123,24 +123,24 @@ session_start();
                 else{
                     $sql = "SELECT * FROM student WHERE request_status = 'Under education authority review'";
                     $result = mysqli_query($conn, $sql);
-                    while($row = mysqli_fetch_assoc($result)){
-                        $_SESSION['student_id'] = $row['student_id']; ?>
+                //     while($row = mysqli_fetch_assoc($result)){
+                //         $_SESSION['student_id'] = $row['student_id']; ?>
                     
-                    <form action="" method="post" > <?php
-                        if (isset($_POST['confirm'])) {
-                        $accepted_request = "Aceepted";
-                        $student_id = $_SESSION['student_id'];
-                        $sql = "UPDATE `student`
-                                SET `request_status` = '$accepted_request'
-                                WHERE `student_id` = '$student_id'";
-                        try{
-                            mysqli_query($conn, $sql);
-                        }
-                        catch(Exception $e){
-                            echo $e->getMessage();
-                        }
+                <!-- //     <form action="" method="post" > <?php 
+                //         if (isset($_POST['confirm'])) {
+                //         $accepted_request = "Aceepted";
+                //         $student_id = $_SESSION['student_id'];
+                //         $sql = "UPDATE `student`
+                //                 SET `request_status` = '$accepted_request'
+                //                 WHERE `student_id` = '$student_id'";
+                //         try{
+                //             mysqli_query($conn, $sql);
+                //         }
+                //         catch(Exception $e){
+                //             echo $e->getMessage();
+                //         }
                     
-                }?>
+                // }?>
                         <tr>
                           <td><?= $row['student_id'] ?></td>
                           <td><?= $row['full_name'] ?></td>

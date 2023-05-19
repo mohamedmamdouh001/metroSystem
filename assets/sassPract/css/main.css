@@ -94,6 +94,22 @@
   color: #c1306f;
 }
 
+.viewTableBtn {
+  font-size: 15px;
+  padding: 1px 10px 1px 10px;
+  border: 2px solid rgba(177, 170, 170, 0.56);
+  background-color: rgba(177, 170, 170, 0.56);
+  color: rgb(0, 0, 0);
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.viewTableBtn:hover {
+  background-color: transparent;
+}
+
 .stdInput {
   width: 250px;
   height: 30px;
@@ -581,6 +597,15 @@ h3:hover {
 
 .eduInfoInput::placeholder {
   font-size: medium;
+}
+
+.viewTable {
+  background-color: #eee;
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.3960784314);
+}
+
+.viewTable th {
+  background-color: rgba(177, 170, 170, 0.56) !important;
 }
 
 .bgMetro {

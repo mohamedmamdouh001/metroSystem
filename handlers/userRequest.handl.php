@@ -40,7 +40,7 @@ if(isset($_POST['request'])){
     $ext_2 = pathinfo($personal_img     , PATHINFO_EXTENSION);    
     $ext_3 = pathinfo($edu_id_photo    , PATHINFO_EXTENSION);
 
-    //Size og files
+    //Size of files
     $photoSize_1 = $_FILES['national_id_img']['size'];
     $photoSize_2 = $_FILES['personal_img']['size'];
     $photoSize_3 = $_FILES['edu_id_photo']['size'];

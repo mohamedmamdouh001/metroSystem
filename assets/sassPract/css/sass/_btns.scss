@@ -54,3 +54,17 @@
     background-color:transparent;
     color:#c1306f;
 }
+.viewTableBtn{
+    font-size: 15px;
+    padding: 1px 10px 1px 10px;
+    border: 2px solid rgb(177 170 170 / 56%);  
+    background-color:rgb(177 170 170 / 56%);
+    color: rgb(0, 0, 0);
+    width: fit-content !important;
+    cursor: pointer;
+    font-weight: 400;
+}
+.viewTableBtn:hover{
+    background-color:transparent;
+  
+}

@@ -45,44 +45,7 @@ session_start();
   <div class="container ">
     <div class="row ">
       <div class="col-lg-6 col-md-6 col-sm-12 position-relative">
-        <div class=" moving-card position-absolute w-100 leftCard text-center">
-          
-          <img src="sassPract/css/img/studentImg/map.png" alt="map" width="70%" class="mt-3 mb-3">
-          <div class="d-flex flex-column justify-content-center align-items-center">
-          <h1>Make your life easiar</h1>
-          <p class="text-black-50">If you already have account</p>
-        <div class="rounded-pill btnn leftHand ms-7">sign in</div> 
-      </div>
-      </div>
- <!-- ############### sign in start ##################### ------ -->
-        <div class="logIn-signUpForm ps-3 ">
-          <h1 class="text-center pt-5 me-3">Welcome</h1>
-        <form class="logIn  " method="post" action="../handlers/userLogin.handl.php" onSubmit="return validateLogIn()">
-          <div class="mb-3 mt-3">
-            <input type="text" class="form-control Email inputStyle"placeholder="Email address" id="emailLogIn" aria-describedby="emailHelp"name="email" >
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-          </div>
-          <div class="mb-3">
-         
-            <input type="password" class="form-control Password inputStyle" placeholder="Password" id="passwordLogIn" name="password">
-          </div>
-          <small id="requiredLogIn" class="text-danger" style="display: none;" >All fields are required Please complete the form</small>
-          
-       
-          <a href="" class="text-black-50"><h3></h3>Forget password?</h2></a>
-        <div class="text-center"><button type="submit" class="btnn rounded-pill me-3 mt-5 " name="bt">Log in</button> </div> 
-        </form>
-      </div>
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-12 position-relative">
-        <div class=" moving-card position-absolute w-100 rightCard hide text-center">
-          <img src="sassPract/css/img/studentImg/map.png" alt="map" width="70%" class="mt-3 mb-3">
-          <div class="d-flex flex-column justify-content-center align-items-center">
-          <h1>Make your life easiar</h1>
-          <p class="text-black-50">If you dont have account</p>
-          <div class="rounded-pill btnn rightHand">sign up</div>
-        </div>
-      </div>
+ 
        <!-- ###############sign in end###################### ------ -->
         <div class="logIn-signUpForm p-3 ">
            <!-- ################done##################### ------ -->

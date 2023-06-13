@@ -1,3 +1,22 @@
+<?php
+session_start();
+include '../config/config.php';
+if(empty($_GET['id'])){
+  header("location:educationSystem.php");
+}
+$student_id = $_GET['id'];
+$sql ="SELECT *FROM `student`
+      INNER JOIN `reqeust`
+      ON student.student_id = reqeust.student_id
+      JOIN `education_athourity` 
+      ON reqeust.edu_id = education_athourity.id
+      JOIN `metro_office`
+      ON reqeust.edu_id = metro_office.id
+      WHERE reqeust.request_id = '$student_id' ";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,70 +44,61 @@
       </tr>
       <tr>  
         <th scope="row">Name</th>
-         <td>Item</td>
-        </tr>
+         <td><?=$row['full_name']?></td>
+      </tr>
       <tr> 
          <th scope="row ">Email</th> 
-         <td>Item</td>
+         <td><?=$row['email']?></td>
         </tr>
       <tr>  
         <th scope="row ">Gender</th>
-         <td>Item</td>
+         <td><?=$row['gender']?></td>
         </tr>
-      <tr>  <th scope="row ">
-        BOD</th> <td>Item</td
-          ></tr>
+      <tr>
+        <th scope="row ">BOD</th> 
+          <td><?=$row['birthdate']?></td>
+      </tr>
       <tr> 
          <th scope="row ">Address</th>
-          <td>Item</td>
+          <td><?=$row['address']?></td>
         </tr>
       <tr>  
         <th scope="row ">National Id</th>
-         <td>Item</td>
+         <td><?=$row['national_id']?></td>
         </tr>
       <tr>
           <th scope="row ">Education Stage</th>
-           <td>Item</td>
+           <td><?=$row['edu_stage']?></td>
           </tr>
       <tr> 
-         <th scope="row ">
-          Education Authority</th>
-           <td>Item</td>
-          </tr>
+         <th scope="row ">Education Authority</th>
+           <td><?=$row['edu_auth']?></td>
+      </tr>
       <tr>  
         <th scope="row ">Nearest Station</th> 
-        <td>Item</td>
+        <td><?=$row['near_station']?></td>
       </tr>
       <tr> 
          <th scope="row ">Start Station</th>
-          <td>Item</td>
+          <td><?=$row['start_station']?></td>
         </tr>
       <tr> 
          <th scope="row ">End Station</th>
-          <td>Item</td>
+          <td><?=$row['end_station']?></td>
         </tr>
       <tr> 
          <th scope="row ">Personal image</th> 
-          <td> <img src="/assets/sassPract/css/img/adminIcons/personal-information.png " class="w-25 img-fluid rounded-circle mb-2" alt="admin"></td> 
+          <td> <img src="../student_img/personal_img/<?=$row['personal_img']?> " class="w-25 img-fluid rounded-circle mb-2" alt="admin"></td> 
         </tr>
       <tr> 
          <th scope="row ">Id photo</th>  
-         <td> <img src="/assets/sassPract/css/img/adminIcons/personal-information.png " class="w-25 img-fluid rounded-circle mb-2" alt="admin"></td>
+         <td> <img src="../student_img/personal_img/<?=$row['id_card_img']?> " class="w-25 img-fluid rounded-circle mb-2" alt="admin"></td>
         </tr>
       <tr>  
-        <th scope="row ">National Id photo</th>  <td> <img src="/assets/sassPract/css/img/adminIcons/personal-information.png " class="w-25 img-fluid rounded-circle mb-2" alt="admin">
+        <th scope="row ">National Id photo</th>  <td> <img src="../student_img/personal_img/<?=$row['identity_img']?> " class="w-25 img-fluid rounded-circle mb-2" alt="admin">
         </td>
-      </tr>
-      <tr>  
-        <th scope="row ">Accept</th> 
-        <td><button  class=" rounded-pill viewTableBtn ">Accept</button>
-        </td>
-      </tr>
-      <tr> 
-         <th scope="row ">Reject</th> 
-         <td> <button  class=" rounded-pill viewTableBtn ">Reject</button> 
-        </td>
-        </tr>
+
+      </form>
     </table>
   </form>
   </div>

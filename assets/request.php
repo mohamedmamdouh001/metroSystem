@@ -3,19 +3,25 @@ session_start();
 include '../config/config.php';
 $user_email = $_SESSION['email'];
 
-$stmt = "SELECT * FROM `student` WHERE `email` = '$user_email'";
+$stmt = "SELECT *FROM `student`
+        INNER JOIN `reqeust`
+        ON student.student_id = reqeust.student_id
+        WHERE student.email= '$user_email'";
 $result = mysqli_query($conn, $stmt);
 $row = mysqli_fetch_assoc($result);
 if(!empty($row['start_station']) && !empty($row['end_station'])){
   header("location:studentProfile.php");
   die();
 }
+$stmt = "SELECT * FROM `student` WHERE `email` = '$user_email'";
+$result = mysqli_query($conn, $stmt);
+$row = mysqli_fetch_assoc($result);
+
 if(empty($user_email)){
   header("location:signup-login.php");
   die();
 }
-$sql = "SELECT `name` FROM `education_athourity`";
-$result = mysqli_query($conn, $sql);
+
 
 
 ?>
@@ -61,7 +67,6 @@ $result = mysqli_query($conn, $sql);
               <?php }
               if(isset($_GET['logout'])){
                 unset($_SESSION['email']);
-                session_destroy();
                 header("location:signup-login.php");
               }
               ?> 
@@ -88,22 +93,15 @@ $result = mysqli_query($conn, $sql);
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <label for="fullName" class=" m-2 ms-2"> Full Name </label>
                     <br>
-                    <input type="text" class="stdInput p-2 m-2 " autofocus placeholder=" Your Name" id="fullName" name="fullname" required >
+                    <input type="text" class="stdInput p-2 m-2 " autofocus placeholder=" Your Name" id="fullName" value="<?=$row['full_name'] ?>" name="fullname" required >
                     <br>
                     <label for="email" class=" m-2 ms-2"> Email </label>
                     <br>
-                    <?php
-                    if(!empty($_SESSION["email"])){
-                      echo $_SESSION["email"];
-                    }else{ ?>
-                      <input type="email" class="stdInput p-2 m-2" placeholder=" Your Email" id="email" name="email" required >
-                    <?php
-                    }
-                    ?>
+                    <input type="email" class="stdInput p-2 m-2" placeholder=" Your Email" id="email" name="email" value="<?=$row['email']  ?>" readonly >
                     <br>
                     <label for="national_Id" class=" m-2 ms-2"> National ID</label>
                     <br>
-                      <input type="text" class="stdInput p-2 m-2" placeholder="Your National ID" id="national_Id" name="national_id" required> 
+                      <input type="text" class="stdInput p-2 m-2" placeholder="Your National ID" id="national_Id" value="<?=$row['national_id'] ?>" name="national_id" required> 
                          <!-- pattern="[0-9]{14}" -->
                     <br>
                     <label for="phoneNumber" class="m-2 ms-2"> Phone </label>
@@ -141,8 +139,10 @@ $result = mysqli_query($conn, $sql);
                     <!-- <input type="text" class="stdInput p-2 m-2" step="" id="eduAdminstration" placeholder="Education Adminstration"  > -->
                     <select class="stdInput p-1 m-1" id="eduStage" name="edu_auth" required>
                     <?php
+                    $sql = "SELECT `name` FROM `education_athourity`";
+                    $result = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_assoc($result)) { ?>
-                      <option value=<?= $row['name']; ?>> <?= $row['name']; ?></option>;
+                      <option value="<?= $row['name']?>"> <?=$row['name']?></option>;
                       <?php
                     }
                     ?>
@@ -155,7 +155,7 @@ $result = mysqli_query($conn, $sql);
                       $stmt = "SELECT * FROM `metro_office`";
                       $result = mysqli_query($conn, $stmt);
                       while($row = mysqli_fetch_assoc($result)){ ?>
-                        <option value= " <?= $row['metro_station_name'] ?> " > <?= $row['metro_station_name'] ?> </option>
+                        <option value= "<?= $row['metro_station_name'] ?>" > <?= $row['metro_station_name'] ?> </option>
                       <?php
                       }
                       ?>

@@ -1,6 +1,27 @@
 <?php
 include '../config/config.php';
 session_start();
+
+if(empty($_SESSION['education_id'])){
+    header("location:loginAdmin.php");
+}
+
+$education_id = $_SESSION['education_id'];
+
+
+if(isset($_GET['logout'])){
+    unset($_SESSION['education_id']);
+    header("location:loginAdmin.php");
+}
+
+
+
+$sql = "SELECT * FROM `education_athourity` WHERE id='$education_id'";
+$result = mysqli_query($conn, $sql);
+$edu_arr = mysqli_fetch_assoc($result);
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,15 +48,22 @@ session_start();
         <div class="sidebar-content bgEdu">
             <div class="sidebar-user bgEdu">
                 <img src="sassPract/css/img/adminIcons/personal-information.png " class="w-25 img-fluid rounded-circle mb-2" alt="admin">
-                <div class="fw-bold text-white">admin name</div>
-                <p class="text-white">admin</p>
+                <div class="fw-bold text-white"><?=$edu_arr['name'] ?>'s Dashboard</div>
+                <p class="text-white">Education Authority Dashboard</p>
             </div>
 
             <ul class="sidebar-nav ">
                     <ul>
                         <li class="sidebar-item eduActive "><a class="sidebar-link text-white" href="#">Requsets</a></li>
                     </ul>
+
+
             </ul>
+            <ul>
+                    <li class="sidebar-item mt-3 eduActive "> <form action="" method="get" > <button name="logout" class="sidebar-link text-white" style="border: 0px;" href="#">Log Out</button> </form></li>
+            </ul>
+
+
         </div>
     </nav>
     <!-- end side bar  -->
@@ -76,85 +104,68 @@ session_start();
             <tr>
               <th>Id</th>
               <th>Name</th>
+              <th>Education Authority</th>
               <th>From</th>
               <th>To</th>
               <th>Status</th>
-              <th>View</th>
-              <th>Confirmation</th>
-              <th>Rejection</th>
+              <th>View Full Information</th>
+              <th>Accept</th>
+              <th>Reject</th>
             </tr>
             <?php
                 if(isset($_POST['search-btn'])){
                     $search_term = $_POST['search'];
-                    $sql = "SELECT * FROM student WHERE full_name LIKE '%$search_term%'";
-                    $result = mysqli_query($conn, $sql);
-                    while($row = mysqli_fetch_assoc($result)){ 
-                        $link = 'viewStudent.php?student_id=' . $row['student_id']; ?>
+                    $stmt = "SELECT * FROM `student`
+                            INNER JOIN `reqeust`
+                            ON student.student_id = reqeust.student_id
+                            JOIN `education_athourity` 
+                            ON reqeust.edu_id = education_athourity.id
+                            WHERE student.full_name LIKE '%$search_term%' AND education_athourity.id= '$education_id'";
+                    $result = mysqli_query($conn, $stmt);
+                    while($row = mysqli_fetch_assoc($result)){ ?>
                     <tr>
-                    <td> <?= $row['student_id'] ?> </td>
+                    <td> <?= $row['request_id'] ?> </td>
                     <td><?= $row['full_name'] ?></td>
+                    <td><?= $row['name'] ?></td>
                     <td><?= $row['start_station'] ?></td>
                     <td><?= $row['end_station'] ?></td>
                     <td><?= $row['request_status'] ?></td>
-                    <td><a href= "viewStudent.php?student_id=<?= $row['student_id'] ?>" class="viewBtn eduBtnn rounded-pill ">View</a></td>
-                    <td> <button class="deleteBtn eduBtnn rounded-pill ">Confirm</button> </td>
-                    <td> <button class="deleteBtn eduBtnn rounded-pill ">Reject</button> </td>
+                    <td><a href= "view.php?id=<?= $row['request_id'] ?>" class="viewBtn eduBtnn rounded-pill btn">View</a></td>
                   </tr>
                 <?php
                     }
                 }
                 elseif(isset($_POST['reset-btn'])){
                     unset($_POST['search-btn']);
-                    $sql = "SELECT * FROM student WHERE request_status = 'Under education authority review' ";
-                    $result = mysqli_query($conn, $sql);
-                    while($row = mysqli_fetch_assoc($result)){ ?>
-                        <tr>
-                          <td><?= $row['student_id'] ?></td>
-                          <td><?= $row['full_name'] ?></td>
-                          <td><?= $row['start_station'] ?></td>
-                          <td><?= $row['end_station'] ?></td>
-                          <td><?= $row['request_status'] ?></td>
-                          <td><a href= "viewStudent.php?student_id=<?= $row['student_id'] ?>" class="viewBtn eduBtnn rounded-pill ">View</a></td>
-                          <td> <button class="deleteBtn eduBtnn rounded-pill ">Confirm</button> </td>
-                          <td> <button class="deleteBtn eduBtnn rounded-pill ">Reject</button> </td>
-                        </tr>
-                <?php
-                }}
-                else{
-                    $sql = "SELECT * FROM student WHERE request_status = 'Under education authority review'";
-                    $result = mysqli_query($conn, $sql);
-                //     while($row = mysqli_fetch_assoc($result)){
-                //         $_SESSION['student_id'] = $row['student_id']; ?>
-                    
-                <!-- //     <form action="" method="post" > <?php 
-                //         if (isset($_POST['confirm'])) {
-                //         $accepted_request = "Aceepted";
-                //         $student_id = $_SESSION['student_id'];
-                //         $sql = "UPDATE `student`
-                //                 SET `request_status` = '$accepted_request'
-                //                 WHERE `student_id` = '$student_id'";
-                //         try{
-                //             mysqli_query($conn, $sql);
-                //         }
-                //         catch(Exception $e){
-                //             echo $e->getMessage();
-                //         }
-                    
-                // }?>
-                        <tr>
-                          <td><?= $row['student_id'] ?></td>
-                          <td><?= $row['full_name'] ?></td>
-                          <td><?= $row['start_station'] ?></td>
-                          <td><?= $row['end_station'] ?></td>
-                          <td><?= $row['request_status'] ?></td>
-                          <td><a href= "viewStudent.php?student_id=<?= $row['student_id'] ?>" class="viewBtn eduBtnn rounded-pill " >View</a></td>
-                          <td>  <button type="submit" name="confirm" class="deleteBtn eduBtnn rounded-pill ">Confirm</button> </td>
-                          <td> <button class="deleteBtn eduBtnn rounded-pill ">Reject</button> </td>
-                        </tr>
-                    </form>
-            <?php   } 
+                    header("location:educationSystem.php");
                 }
-                
+                else{
+                    $stmt = "SELECT *FROM `student`
+                            INNER JOIN `reqeust`
+                            ON student.student_id = reqeust.student_id
+                            JOIN `education_athourity` 
+                            ON reqeust.edu_id = education_athourity.id
+                            WHERE education_athourity.id= '$education_id'";
+                    $result = mysqli_query($conn, $stmt);
+
+
+                    while($row = mysqli_fetch_assoc($result)){ 
+                        ?>
+                        <tr>
+                            <td><?= $row['request_id'] ?></td>
+                            <td><?= $row['full_name'] ?></td>
+                            <td><?= $row['name'] ?></td>
+                            <td><?= $row['start_station'] ?></td>
+                            <td><?= $row['end_station'] ?></td>
+                            <td><?= $row['request_status'] ?></td>
+                            <td> <a href="view.php?id=<?= $row['request_id']?>" class="viewBtn eduBtnn rounded-pill btn" >View</a></td>
+                            <td> <a href="../handlers/edu_accept.php?id=<?= $row['request_id']?>" class="viewBtn eduBtnn rounded-pill btn" >Accept</a></td>
+                            <td> <a href="../handlers/edu_reject.php?id=<?= $row['request_id']?>" class="viewBtn eduBtnn rounded-pill btn" >Reject</a></td>
+
+                        </tr>
+            <?php
+                   } 
+                }
                 ?>
        
           </table>

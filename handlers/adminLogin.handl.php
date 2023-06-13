@@ -27,7 +27,7 @@ if(isset($_POST['login'])){
     $result = mysqli_query($conn,$sql);
 
 
-    if (mysqli_num_rows($result) > 0) {
+    if (mysqli_num_rows($result) == 1) {
 
         if($table_name == "admin"){
             $_SESSION['admin_id'] = $id;

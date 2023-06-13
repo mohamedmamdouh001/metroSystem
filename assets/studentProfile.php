@@ -5,7 +5,14 @@ if (empty($user_email)) {
     header("location:request.php");
 }
 include "../config/config.php";
-$stmt = "SELECT * FROM `student` WHERE `email` = '$user_email'";
+$stmt = "SELECT *FROM `student`
+        INNER JOIN `reqeust`
+        ON student.student_id = reqeust.student_id
+        JOIN `education_athourity` 
+        ON reqeust.edu_id = education_athourity.id
+        JOIN `metro_office`
+        ON reqeust.edu_id = metro_office.id
+        WHERE student.email= '$user_email'";
 $result = mysqli_query($conn, $stmt); 
 while ($row = mysqli_fetch_assoc($result)) {
 ?>
@@ -44,30 +51,34 @@ while ($row = mysqli_fetch_assoc($result)) {
               <li class="nav-item p-2">
                 <a class="nav-link fs-4" aria-current="page" href="#">Home</a>
               </li>
+              <li class="nav-item p-2">
+                <a class="profileLogOut nav-link position-relative fs-4" aria-current="page" style="border:0px;" type="submit" name="logout">Edit Profile</a>
+              </li>
               <li class="nav-item p-2 ">
               <?php if(!empty($_SESSION['email'])){ ?>
                 <form method="get" action="">
-                <button class="profileLogOut nav-link position-relative fs-4" aria-current="page" style="border:0px;" type="submit" name="logout">Log Out</button>
+                    <button class="profileLogOut nav-link position-relative fs-4" aria-current="page" style="border:0px;" type="submit" name="logout">Log Out
+                        <a class="navbar-brand" href="#">
+                            <img src="sassPract/css/img/studentImg/logout (1).png" alt="" width="40" height="35" class="logoutIcon d-none d-lg-inline-block p-1 ms-2">
+                        </a>
+                    </button>
                 </form>
               <?php }
               if(isset($_GET['logout'])){
                 unset($_SESSION['email']);
-                session_destroy();
                 header("location:signup-login.php");
               }
               ?> 
               </li>
             </ul>
-            <a class="navbar-brand" href="#">
-                <img src="sassPract/css/img/studentImg/logout (1).png" alt="" width="40" height="35" class="logoutIcon d-none d-lg-inline-block p-1 ms-2">
-            </a>
+
           </div>
         </div>    
     </nav>                       
         <div class="profile mt-3 p-3">
             <div class="container">
                 <div class="profileImage m-4 d-flex justify-content-center align-items-center">
-                    <img src="../student_img/personal_img/<?php $row['personal_img'];?>" alt="Personal Photo" width="90" height="100">
+                    <img src="../student_img/personal_img/<?= $row['personal_img'];?>" alt="Personal Photo" width="90" height="100">
                    </div>
                  <form class="row m-4">
                     <div class="col-sm-12 col-md-6 col-lg-4">
@@ -75,35 +86,35 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <br>
                         <?php
                             ?>
-                        <p><?=$row['full_name']; ?></p> 
+                        <input type="text" class="stdInput p-2 m-2 " readonly  id="fullName" value="<?=$row['full_name'] ?>" name="fullname" >
                         <br>
                         <label for="email" class=" m-2 ms-2"> Email </label>
                         <br>
-                        <p><?=$row['email']; ?></p> 
+                        <input type="email" class="stdInput p-2 m-2"  id="email" name="email" value="<?=$row['email']  ?>" readonly >
                         <br>
                         <label for="phoneNumber" class="m-2 ms-2"> Phone </label>
                         <br>
-                        <p><?=$row['phone']; ?></p> 
+                        <input type="text" class="stdInput p-2 m-2" value="<?=$row['phone']?>"  id="phoneNumber" name="phone"  readonly>
                         <br>
                     </div>
                     <div class="col-sm-0 col-md-6 col-lg-4">
                         <label for="national_Id" class=" m-2 ms-2"> National ID</label>
                         <br>
-                        <p><?=$row['national_id']; ?></p> 
+                        <input type="text" class="stdInput p-2 m-2" id="national_Id" value="<?=$row['national_id'] ?>" name="national_id" readonly> 
                         <br>
                         <label for="uniName" class="m-2 ms-2"> Education Administration / University </label>
                         <br>
-                        <p><?=$row['edu_auth']; ?></p> 
+                        <input type="text" class="stdInput p-2 m-2"  value="<?=$row['name'] ?>" readonly>  
                         <br>
                         <label for="nearestStation" class=" m-2 ms-2"> Nearest Station </label>
                         <br>
-                        <p><?=$row['near_station']; ?></p> 
+                        <input type="text" class="stdInput p-2 m-2"  value="<?=$row['metro_station_name'] ?>" readonly>
                         <br>                   
                     </div>
                     <div class="col-sm-0 col-md-0 col-lg-4">
                         <label for="address" class=" m-2 ms-2"> Address </label>
                         <br>
-                        <p><?=$row['address'] ?></p> 
+                        <input type="text" class="stdInput p-2 m-2"  value="<?=$row['address'] ?>" readonly>
                     </div>
                 </form>    
             </div>
@@ -125,14 +136,23 @@ while ($row = mysqli_fetch_assoc($result)) {
                     </tr>
                    </thead>
                    <tr>
-                        <td><?=$row['student_id']; ?></td>
+                        <td><?=$row['request_id']; ?></td>
                         <td><?=$row['full_name']; ?></td>
                         <td><?=$row['start_station']; ?></td>
                         <td><?=$row['end_station']; ?></td>
-                        <td><?=$row['request_status']; }?></td>
-                        <td></td>
+                        <td><?=$row['request_status']; ?></td>
+                        <td>
+                            <?php
+                            if(isset($row['request_status']) == "Under education authority review"){
+                            ?>
+                                <a href="../handlers/cancel.php?id=<?=$row['request_id']; ?>" class="btn btn-danger">Cancel</a>
+                            <?php
+                            }
+                            ?>
+                        </td>
                    </tr>
-                  </table>
+                </table>
+                <?php } ?>
                 </div> 
             </div>         
         </div>     

@@ -70,6 +70,7 @@
       </div>
     </div>
   <script src="js/payment.js"></script>
+
   </body>
 
 </html>

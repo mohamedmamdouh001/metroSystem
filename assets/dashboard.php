@@ -1,3 +1,19 @@
+<?php
+include '../config/config.php';
+session_start();
+
+if(empty($_SESSION['admin_id'])){
+    header("location:loginAdmin.php");
+}
+
+$admin_id = $_SESSION['admin_id'];
+
+
+if(isset($_GET['logout'])){
+    unset($_SESSION['admin_id']);
+    header("location:loginAdmin.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,10 +46,11 @@
             <ul class="sidebar-nav">
                     <ul>
                         <li class="sidebar-item dashLinkActive"><a class="sidebar-link text-white" href="#">Dashboard</a></li>
-                        <li class="sidebar-item"><a class="sidebar-link text-white" href="assets/dashboardReq.html">Requsets</a></li>
-                        <li class="sidebar-item"><a class="sidebar-link text-white" href="assets/dashboardStd.html">Students</a></li>
-                        <li class="sidebar-item"><a class="sidebar-link text-white" href="assets/dashboardEdu.html">Education</a></li>
-                        <li class="sidebar-item"><a class="sidebar-link text-white" href="assets/dashboardOffices.html">Offices</a></li>
+                        <li class="sidebar-item"><a class="sidebar-link text-white" href="dashboardReq.php">Requests</a></li>
+                        <li class="sidebar-item"><a class="sidebar-link text-white" href="dashboardStd.php">Students</a></li>
+                        <li class="sidebar-item"><a class="sidebar-link text-white" href="dashboardEdu.php">Education</a></li>
+                        <li class="sidebar-item"><a class="sidebar-link text-white" href="dashboardOffices.php">Offices</a></li> <br>
+                        <li class="sidebar-item"><form action="" method="get"><button name="logout" class="sidebar-link text-white" style="border: 0px;" >Log Out</button></form></li>
                     </ul>
             </ul>
         </div>
@@ -74,29 +91,8 @@
           <h5 class="card-title">students</h5>
           <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
         </div>
-      
-      </div>
     </div>
-        <!-- /**/ -->
-        <div class="col">
-    <div class="card mb-3 " style="width: 100%; background-color:#68b4d1;">
-        <div class="card-body">
-          <h5 class="card-title">Blocked</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        </div>
-      </div>
     </div>
-      <!-- dvdvdvdv -->
-      <div class="col">
-    <div class="card mb-3  " style="width: 100% ; background-color:#a2c8df;">
-        <div class="card-body">
-          <h5 class="card-title">Total</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        </div>
-      </div>
-    </div>
-      <!-- vfvfv -->
-
 </div>
 
 </div>

@@ -102,9 +102,8 @@ $metro_arr = mysqli_fetch_assoc($result);
               <th>Name</th>
               <th>From</th>
               <th>To</th>
-              <th>view</th>
+              <th>View Full Information</th>
               <th>Confirmation</th>
-              <th>reject</th>
             </tr>
             <?php
                 if(isset($_POST['search-btn'])){
@@ -123,8 +122,7 @@ $metro_arr = mysqli_fetch_assoc($result);
                     <td><?= $row['start_station'] ?></td>
                     <td><?= $row['end_station'] ?></td>
                     <td><a href= "view.php?id=<?= $row['request_id'] ?>" class="viewBtn eduBtnn rounded-pill btn">View</a></td>
-                    <td> <a href="../handlers/edu_accept.php?id=<?= $row['request_id']?>" class="viewBtn eduBtnn rounded-pill btn" >Accept</a></td>
-                    <td> <a href="../handlers/edu_reject.php?id=<?= $row['request_id']?>" class="viewBtn eduBtnn rounded-pill btn" >Reject</a></td>
+                    <td> <a href="../handlers/metro_confirm.php?id=<?= $row['request_id']?>" class="viewBtn eduBtnn rounded-pill btn" >Confirm</a></td>
                   </tr>
                 <?php
                     }
@@ -151,9 +149,7 @@ $metro_arr = mysqli_fetch_assoc($result);
                             <td><?= $row['start_station'] ?></td>
                             <td><?= $row['end_station'] ?></td>
                             <td> <a href="view.php?id=<?= $row['request_id']?>" class="viewBtn eduBtnn rounded-pill btn" >View</a></td>
-                            <td> <a href="../handlers/edu_accept.php?id=<?= $row['request_id']?>" class="viewBtn eduBtnn rounded-pill btn" >Accept</a></td>
-                            <td> <a href="../handlers/edu_reject.php?id=<?= $row['request_id']?>" class="viewBtn eduBtnn rounded-pill btn" >Reject</a></td>
-
+                            <td> <a href="../handlers/metro_confirm.php?id=<?= $row['request_id']?>" class="viewBtn eduBtnn rounded-pill btn" >Confirm</a></td>
                         </tr>
             <?php
                    } 

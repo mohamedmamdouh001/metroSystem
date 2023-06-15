@@ -1,3 +1,19 @@
+<?php
+include '../config/config.php';
+session_start();
+
+if(empty($_SESSION['admin_id'])){
+    header("location:loginAdmin.php");
+}
+
+$admin_id = $_SESSION['admin_id'];
+
+
+if(isset($_GET['logout'])){
+    unset($_SESSION['admin_id']);
+    header("location:loginAdmin.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,22 +34,23 @@
     <!-- start sidebar  -->
     <nav id="sidebar" class="sidebar toggled">
         <div class="sidebar-brand" >
-            <img src="/assets/sassPract/css/img/adminIcons/istanbul-metro-logo.png" style="filter: invert();" class="w-25" alt=""> ETRO
+            <img src="sassPract/css/img/adminIcons/istanbul-metro-logo.png" style="filter: invert();" class="w-25" alt=""> ETRO
         </div>
         <div class="sidebar-content">
             <div class="sidebar-user">
-                <img src="/assets/sassPract/css/img/adminIcons/personal-information.png " class="w-25 img-fluid rounded-circle mb-2" alt="admin">
+                <img src="sassPract/css/img/adminIcons/personal-information.png " class="w-25 img-fluid rounded-circle mb-2" alt="admin">
                 <div class="fw-bold">admin Offices</div>
                 <p>admin</p>
             </div>
 
             <ul class="sidebar-nav ">
                     <ul>
-                        <li class="sidebar-item "><a class="sidebar-link text-white" href="/assets/dashboard.html">Dashboard</a></li>
-                        <li class="sidebar-item "><a class="sidebar-link text-white" href="/assets/dashboardReq.html">Requsets</a></li>
-                        <li class="sidebar-item "><a class="sidebar-link text-white" href="/assets/dashboardStd.html">Students</a></li>
-                        <li class="sidebar-item "><a class="sidebar-link text-white" href="/assets/dashboardEdu.html">Education</a></li>
-                        <li class="sidebar-item dashLinkActive"><a class="sidebar-link"href="#">Offices</a></li>
+                        <li class="sidebar-item "><a class="sidebar-link text-white" href="dashboard.php">Dashboard</a></li>
+                        <li class="sidebar-item "><a class="sidebar-link text-white" href="dashboardReq.php">Requests</a></li>
+                        <li class="sidebar-item "><a class="sidebar-link text-white" href="dashboardStd.php">Students</a></li>
+                        <li class="sidebar-item "><a class="sidebar-link text-white" href="dashboardEdu.php">Education</a></li>
+                        <li class="sidebar-item dashLinkActive"><a class="sidebar-link"href="#">Offices</a></li>  <br>
+                        <li class="sidebar-item"><form action="" method="get"><button name="logout" class="sidebar-link text-white" style="border: 0px;" >Log Out</button></form></li>
                     </ul>
             </ul>
         </div>

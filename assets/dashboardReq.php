@@ -1,3 +1,19 @@
+<?php
+include '../config/config.php';
+session_start();
+
+if(empty($_SESSION['admin_id'])){
+    header("location:loginAdmin.php");
+}
+
+$admin_id = $_SESSION['admin_id'];
+
+
+if(isset($_GET['logout'])){
+    unset($_SESSION['admin_id']);
+    header("location:loginAdmin.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,29 +27,31 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
-    <title>Admin students</title>
+    <title> Admin requests</title>
 </head>
 <body>
 <div class="mainWrapper mainWrapperReq">
     <!-- start sidebar  -->
     <nav id="sidebar" class="sidebar toggled">
         <div class="sidebar-brand" >
-            <img src="/assets/sassPract/css/img/adminIcons/istanbul-metro-logo.png" style="filter: invert();" class="w-25" alt=""> ETRO
+            <img src="sassPract/css/img/adminIcons/istanbul-metro-logo.png" style="filter: invert();" class="w-25" alt=""> ETRO
         </div>
         <div class="sidebar-content">
             <div class="sidebar-user">
-                <img src="/assets/sassPract/css/img/adminIcons/personal-information.png "  class="w-25 img-fluid rounded-circle mb-2" alt="admin">
+                <img src="sassPract/css/img/adminIcons/personal-information.png " class="w-25 img-fluid rounded-circle mb-2" alt="admin">
                 <div class="fw-bold">admin name</div>
                 <p>admin</p>
             </div>
 
             <ul class="sidebar-nav ">
                     <ul>
-                        <li class="sidebar-item "><a class="sidebar-link text-white" href="/assets/dashboard.html">Dashboard</a></li>
-                        <li class="sidebar-item "><a class="sidebar-link text-white" href="/assets/dashboardReq.html">Requsets</a></li>
-                        <li class="sidebar-item dashLinkActive"><a class="sidebar-link text-white" href="#">Students</a></li>
-                        <li class="sidebar-item"><a class="sidebar-link text-white" href="/assets/dashboardEdu.html">Education</a></li>
-                        <li class="sidebar-item"><a class="sidebar-link text-white"href="/assets/dashboardOffices.html">Offices</a></li>
+                        <li class="sidebar-item "><a class="sidebar-link text-white" href="dashboard.php">Dashboard</a></li>
+                        <li class="sidebar-item dashLinkActive"><a class="sidebar-link text-white" href="#">Requests</a></li>
+                        <li class="sidebar-item"><a class="sidebar-link text-white" href="dashboardStd.php">Students</a></li>
+                        <li class="sidebar-item"><a class="sidebar-link text-white" href="dashboardEdu.php">Education</a></li>
+                        <li class="sidebar-item"><a class="sidebar-link text-white"href="dashboardOffices.php">Offices</a></li>  <br>
+                        <li class="sidebar-item"><form action="" method="get"><button name="logout" class="sidebar-link text-white" style="border: 0px;" >Log Out</button></form></li>
+                      
                     </ul>
             </ul>
         </div>
@@ -59,9 +77,8 @@
     <h1 class="header-title mb-3 ps-3">
         Welcome back admin
     </h1>
-   <div class=" d-flex">
-<h3 class="allStudents ms-3 text-black-50 reqActive" style="cursor: pointer;">Students</h3>
-<h3 class="block ms-3 text-black-50" style="cursor: pointer;">Blocked</h3>
+   <div class="reqTypeHolder d-flex">
+<h3 class="allRequsets ms-3 text-black-50 reqActive" style="cursor: pointer;">Requsets</h3>
    </div>
    <h3 class="ms-3 mt-3">
     <form action="">
@@ -72,7 +89,7 @@
 </div>
 <div class="row d-flex ">
         <table class="table table-bordered ">
-          <thead> <p class="fs-2" style="background-color: #eee;">Students Data</p></thead>
+          <thead> <p class="fs-2" style="background-color: #eee;">  Requsets</p></thead>
             <tr>
               <th>Id</th>
               <th>Name</th>
@@ -80,7 +97,7 @@
               <th>To</th>
               <th>Status</th>
               <th>view</th>
-              <th>Block</th>
+              <th>Delete</th>
             </tr>
             <tr>
               <td>1920011</td>
@@ -89,7 +106,7 @@
               <td>helwan</td>
               <td>accepted</td>
               <td><button class="viewBtn dashBtnn rounded-pill ">View</button></td>
-              <td> <button class="deleteBtn dashBtnn rounded-pill ">Block</button> </td>
+              <td> <button class="deleteBtn dashBtnn rounded-pill ">Delete</button> </td>
             </tr>
             <tr>
               <td>1920011</td>
@@ -98,7 +115,7 @@
               <td>helwan</td>
               <td>accepted</td>
               <td><button  class="rounded-pill viewBtn dashBtnn"> View</button></td>
-              <td> <button  class="blockBtn dashBtnn rounded-pill ">Block</button> </td>
+              <td> <button  class="deleteBtn dashBtnn rounded-pill ">Delete</button> </td>
             </tr>
             <tr>
               <td>1920011</td>
@@ -107,7 +124,7 @@
               <td>helwan</td>
               <td>accepted</td>
               <td><button  class="viewBtn dashBtnn rounded-pill ">View</button></td>
-              <td> <button  class="deleteBtn dashBtnn rounded-pill ">Block</button> </td>
+              <td> <button  class="deleteBtn dashBtnn rounded-pill ">Delete</button> </td>
             </tr>
        
           </table>

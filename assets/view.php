@@ -74,6 +74,16 @@ $row = mysqli_fetch_assoc($result);
          <th scope="row ">Education Authority</th>
            <td><?=$row['edu_auth']?></td>
       </tr>
+      <tr> 
+         <th scope="row ">Status of the Request</th>
+         <?php
+          if($row['request_status'] == "Accepted from Your Education Authority and you have to pay"){ ?>
+            <td><?="Accepted from the Education Authority."?></td>
+          <?php
+          }
+         ?>
+
+      </tr>
       <tr>  
         <th scope="row ">Nearest Station</th> 
         <td><?=$row['near_station']?></td>

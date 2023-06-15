@@ -24,11 +24,11 @@
             <label for="paymentMethod" class="form-label">Payment Method</label>
             <div class="payment-methods">
               <div class="card" id="creditCard">
-                <img src="/assets/sassPract/css/img/studentImg/visa.jpeg" alt="Credit Card">
+                <img src="sassPract/css/img/studentImg/visa.jpeg" alt="Credit Card">
                 <div>Credit Card</div>
               </div>
               <div class="card" id="fawry">
-                <img src="/assets/sassPract/css/img/studentImg/fawry.jpeg" alt="Fawry">
+                <img src="sassPract/css/img/studentImg/fawry.jpeg" alt="Fawry">
                 <div>Fawry</div>
               </div>
             </div>

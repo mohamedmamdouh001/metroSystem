@@ -8,10 +8,6 @@ const payImg = document.getElementById('payment-img');
 const farwyCode = document.getElementById('farwy-code');
 const btnFawry = document.getElementById('btnFawry');
 const btnVisa = document.getElementById('btnVisa');
-const formFawry = document.getElementById('formFawry');
-const formvisa = document.getElementById('formvisa');
-
-
 
 payImg.style.display = 'none';
 farwyCode.style.display = 'none';
@@ -42,8 +38,33 @@ fawry.addEventListener('click', () => {
   payImg.style.display = 'block';
  farwyCode.style.display = 'block';
  btnFawry.style.display = 'block';
-
-
-
-
 });
+
+
+function validatePayment() {
+  const cardNumber = document.getElementById('cardNumber');
+  const expiryDate = document.getElementById('expiryDate');
+  const cvv = document.getElementById('cvv');
+  const name = document.getElementById('name');
+
+if (!/^(\d{4}[- ]?){3}\d{4}$/.test(cardNumber.value)) {
+ document.getElementById("cardNumErorr").style.display="block";
+  return false;
+}
+if (!/^(0[1-9]|1[0-2])\/([0-9]{2})$/.test(expiryDate.value)) {
+ document.getElementById("expiryDateErorr").style.display="block";
+  return false;
+}
+if (!/^[0-9]{3,4}$/.test(cvv.value)) {
+ document.getElementById("cvvErorr").style.display="block";
+  return false;
+}
+
+if(!/^[A-Za-z]/.test(name.value)){
+  document.getElementById("cardholderError").style.display="block";
+  return false;
+}
+  // If all validation is done
+  return true;
+}
+

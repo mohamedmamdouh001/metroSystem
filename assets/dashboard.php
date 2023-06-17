@@ -13,6 +13,26 @@ if(isset($_GET['logout'])){
     unset($_SESSION['admin_id']);
     header("location:loginAdmin.php");
 }
+
+$sql = "SELECT * FROM `admin` WHERE id='$admin_id'";
+$result_1 = mysqli_query($conn, $sql);
+$admin_arr = mysqli_fetch_assoc($result_1);
+
+$stmt_1 = "SELECT COUNT(request_id) FROM `reqeust`";
+$result_2 = mysqli_query($conn, $stmt_1);
+$req_arr = mysqli_fetch_assoc($result_2);
+
+$stmt_2 = "SELECT COUNT(student_id) FROM `student`";
+$result_3 = mysqli_query($conn, $stmt_2);
+$stu_arr = mysqli_fetch_assoc($result_3);
+
+$stmt_3 = " SELECT * FROM `student`
+            INNER JOIN `reqeust`
+            ON student.student_id = reqeust.student_id
+            ORDER BY `request_id` DESC
+            LIMIT 5";
+$result_4 = mysqli_query($conn, $stmt_3);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,15 +59,14 @@ if(isset($_GET['logout'])){
         <div class="sidebar-content">
             <div class="sidebar-user">
                 <img src="sassPract/css/img/adminIcons/personal-information.png " class="w-25 img-fluid rounded-circle mb-2" alt="admin" >
-                <div class="fw-bold">admin name</div>
-                <p>admin</p>
+                <div class="fw-bold"><?=$admin_arr['admin_name']?></div>
+                <p>Admin's Dashboard</p>
             </div>
 
             <ul class="sidebar-nav">
                     <ul>
                         <li class="sidebar-item dashLinkActive"><a class="sidebar-link text-white" href="#">Dashboard</a></li>
                         <li class="sidebar-item"><a class="sidebar-link text-white" href="dashboardReq.php">Requests</a></li>
-                        <li class="sidebar-item"><a class="sidebar-link text-white" href="dashboardStd.php">Students</a></li>
                         <li class="sidebar-item"><a class="sidebar-link text-white" href="dashboardEdu.php">Education</a></li>
                         <li class="sidebar-item"><a class="sidebar-link text-white" href="dashboardOffices.php">Offices</a></li> <br>
                         <li class="sidebar-item"><form action="" method="get"><button name="logout" class="sidebar-link text-white" style="border: 0px;" >Log Out</button></form></li>
@@ -79,8 +98,8 @@ if(isset($_GET['logout'])){
     <div class="col">
     <div class="card mb-3  " style="width: 100%; background-color: #2a5677;">
         <div class="card-body">
-          <h5 class="card-title">Requsets</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <h5 class="card-title">Requests</h5>
+          <p class="card-text">Total requests from all education authorities is <b> <?=$req_arr['COUNT(request_id)']?> requests.</b></p>
         </div>
       </div>
     </div>
@@ -88,69 +107,42 @@ if(isset($_GET['logout'])){
 <div class="col">
     <div class="card mb-3  " style="width: 100%; background-color: #3e8bb3;">
         <div class="card-body">
-          <h5 class="card-title">students</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <h5 class="card-title">Students</h5>
+          <p class="card-text">Total students from all Education Authorities is <b> <?=$stu_arr['COUNT(student_id)']?> requests.</p>
         </div>
     </div>
     </div>
 </div>
 
 </div>
-<div class="col-lg-4 col-lg-4 col-sm-12">
-    <div class="col">
-        <img class="calender ps-3" src="sassPract/css/img/adminIcons/calender.png" alt="calender">
-    </div>
-   
-</div>
+
 <div class="row secondPart">
     <div class="col-lg-8 col-sm-12 col-md-8">
         <table class="table table-bordered ">
           <thead> <p class="fs-2" style="background-color:#2062a4;"> Recent Requsets</p></thead>
             <tr>
-              <th>Id</th>
+              <th>Request Id</th>
               <th>Name</th>
               <th>From</th>
               <th>To</th>
               <th>Status</th>
             </tr>
+        <?php
+            while ($recent_req = mysqli_fetch_assoc($result_4)) { ?>
             <tr>
-              <td>1920011</td>
-              <td>Ahmed</td>
-              <td>Giza</td>
-              <td>helwan</td>
-              <td>accepted</td>
+              <td><?=$recent_req['request_id']?></td>
+              <td><?=$recent_req['full_name']?></td>
+              <td><?=$recent_req['start_station']?></td>
+              <td><?=$recent_req['end_station']?></td>
+              <td><?=$recent_req['request_status']?></td>
             </tr>
-            <tr>
-              <td>1920011</td>
-              <td>Ahmed</td>
-              <td>Giza</td>
-              <td>helwan</td>
-              <td>accepted</td>
-            </tr>
-            <tr>
-              <td>1920011</td>
-              <td>Ahmed</td>
-              <td>Giza</td>
-              <td>helwan</td>
-              <td>accepted</td>
-            </tr>
+        <?php  
+            }
+        ?>
        
           </table>
     </div>
-    <div class="col-lg-4 col-sm-12 col-md-4">
-        <div class="col text-center">
-            <div class="card" style="width: 18rem;">
-                <div class="card-header" style="background-color: #2062a4;">
-                 New students
-                </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">An item</li>
-                  <li class="list-group-item">A second item</li>
-                  <li class="list-group-item">A third item</li>
-                </ul>
-              </div>
-        </div>
-    </div>
+ 
 
 </div>
 

@@ -1,3 +1,37 @@
+<?php
+include "../config/config.php";
+
+$id = $_GET['id'];
+
+if(isset($_POST['pay-fawry'])){
+  $fawry_reciept = $_FILES['fawry-reciept']['name'];
+
+  $target_dir_edu = "../payment_fawry/";
+  $target_file_edu = $target_dir_edu . basename($fawry_reciept);
+  move_uploaded_file($_FILES["fawry-reciept"]['tmp_name'], $target_file_edu);
+
+  $sql = "INSERT INTO `payment`(`request_id`,`payment_method`,`is_payed`)VALUES('$id', '$fawry_reciept', 1)";
+  mysqli_query($conn, $sql);
+
+  $sql = "UPDATE `reqeust`
+          SET `request_status` = 'Wait for Metro Office Confirmation'
+          WHERE `request_id`='$id'";
+  mysqli_query($conn, $sql);
+  header("location:studentProfile.php");
+}
+if(isset($_POST['pay-visa'])){
+
+  $sql = "INSERT INTO `payment`(`request_id`,`payment_method`,`is_payed`)VALUES('$id', 'VISA', 1)";
+  mysqli_query($conn, $sql);
+
+  $sql = "UPDATE `reqeust`
+          SET `request_status` = 'Wait for Metro Office Confirmation'
+          WHERE `request_id`='$id'";
+  mysqli_query($conn, $sql);
+  header("location:studentProfile.php");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +53,7 @@
     <div class="row">
       <div class="col-md-12">
         <h1 class="PaymentTitle">Payment Details</h1>
-        <form>
+        <form action="" enctype="multipart/form-data" method="post" >
           <div class="mb-3">
             <label for="paymentMethod" class="form-label">Payment Method</label>
             <div class="payment-methods">
@@ -39,11 +73,17 @@
           </div>
           <div class="mb-3" id="payment-img">
             <label for="payment-img" class="form-label">payment img</label>
-            <input type="file" class="form-control payInp" id="payment-img" required>
+            <input type="file" name="fawry-reciept" class="form-control payInp" id="payment-img" required>
+            <input type="hidden" name="student-id" value="<?=$id?>" >
           </div>
-          <button type="submit" class="btn btn-dark inpBtn " id="btnFawry">Pay Now</button>
+          <button type="submit" class="btn btn-dark inpBtn " name="pay-fawry" id="btnFawry">Pay Now</button>
         </form>
-        <form action="" id="formvisa" onSubmit=" return validatePayment()">
+
+
+
+
+
+        <form action="" method="post" id="formvisa" onSubmit=" return validatePayment()">
         
           <div class="mb-3" id="cardDetails">
             <label for="cardNumber" class="form-label">Card Number</label>
@@ -64,9 +104,10 @@
             <label for="name" class="form-label">Cardholder Name</label>
             <input type="text" class="form-control payInp" id="name" placeholder="Enter cardholder name" required>
             <small class="text-danger" id="cardholderError" style="display: none;">Please enter a valid cardholder name</small>
+            <input type="hidden" name="student-id" value="<?=$id?>" >
           </div>
           <div class="text-center">
-            <button type="submit" class="btn btn-dark inpBtn " id="btnVisa">Pay Now</button>
+            <button type="submit" class="btn btn-dark inpBtn " name="pay-visa" id="btnVisa">Pay Now</button>
           </div>
         </form>
       </div>

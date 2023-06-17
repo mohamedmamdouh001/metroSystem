@@ -113,7 +113,7 @@ $metro_arr = mysqli_fetch_assoc($result);
                             ON student.student_id = reqeust.student_id
                             JOIN `metro_office` 
                             ON reqeust.metro_id = metro_office.id
-                            WHERE student.full_name LIKE '%$search_term%' AND metro_office.id= '$metro_id' AND request_status  LIKE '%Accepted from Your Education Authority and you have to pay%'";
+                            WHERE student.full_name LIKE '%$search_term%' AND metro_office.id= '$metro_id' AND request_status  LIKE '%Wait for Metro Office Confirmation%'";
                     $result = mysqli_query($conn, $stmt);
                     while($row = mysqli_fetch_assoc($result)){ ?>
                     <tr>
@@ -137,7 +137,7 @@ $metro_arr = mysqli_fetch_assoc($result);
                             ON student.student_id = reqeust.student_id
                             JOIN `metro_office` 
                             ON reqeust.metro_id = metro_office.id
-                            WHERE metro_office.id= '$metro_id' AND request_status  LIKE '%Accepted from Your Education Authority and you have to pay%'";
+                            WHERE metro_office.id= '$metro_id' AND request_status  LIKE '%Wait for Metro Office Confirmation%'";
                     $result = mysqli_query($conn, $stmt);
 
 

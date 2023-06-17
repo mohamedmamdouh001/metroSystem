@@ -1,20 +1,24 @@
 <?php
+include "../config/config.php";
 session_start();
 $user_email = $_SESSION['email'];
 if (empty($user_email)) {
     header("location:request.php");
 }
-include "../config/config.php";
+
 $stmt = "SELECT *FROM `student`
         INNER JOIN `reqeust`
         ON student.student_id = reqeust.student_id
         JOIN `education_athourity` 
         ON reqeust.edu_id = education_athourity.id
         JOIN `metro_office`
-        ON reqeust.edu_id = metro_office.id
+        ON reqeust.metro_id = metro_office.id
         WHERE student.email= '$user_email'";
 $result = mysqli_query($conn, $stmt); 
-while ($row = mysqli_fetch_assoc($result)) {
+$row = mysqli_fetch_assoc($result);
+if(empty($row)){
+    header("location:request.php");
+}
 ?>
 
 
@@ -51,9 +55,6 @@ while ($row = mysqli_fetch_assoc($result)) {
               <li class="nav-item p-2">
                 <a class="nav-link fs-4" aria-current="page" href="#">Home</a>
               </li>
-              <li class="nav-item p-2">
-                <a class="profileLogOut nav-link position-relative fs-4" aria-current="page" style="border:0px;" type="submit" name="logout">Edit Profile</a>
-              </li>
               <li class="nav-item p-2 ">
               <?php if(!empty($_SESSION['email'])){ ?>
                 <form method="get" action="">
@@ -66,7 +67,7 @@ while ($row = mysqli_fetch_assoc($result)) {
               <?php }
               if(isset($_GET['logout'])){
                 unset($_SESSION['email']);
-                header("location:signup-login.php");
+                header("location:login.php");
               }
               ?> 
               </li>
@@ -143,16 +144,24 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <td><?=$row['request_status']; ?></td>
                         <td>
                             <?php
-                            if(isset($row['request_status']) == "Under education authority review"){
+                            if($row['request_status'] == "Under education authority review"){
                             ?>
                                 <a href="../handlers/cancel.php?id=<?=$row['request_id']; ?>" class="btn btn-danger">Cancel</a>
+                            <?php
+                            } elseif($row['request_status'] == "Rejected due to existance if invalid data"){ ?>
+                                <h5>No action needed</h5>
+                            <?php
+                            } elseif($row['request_status'] == "Accepted from Your Education Authority and you have to pay"){ ?>
+                                <a href="payment.php?id=<?=$row['request_id']; ?>" class="btn btn-primary">Pay Fees</a>
+                            <?php
+                            } elseif($row['request_status'] == "Wait for Metro Office Confirmation"){ ?>
+                                <h5>No action needed</h5>
                             <?php
                             }
                             ?>
                         </td>
                    </tr>
                 </table>
-                <?php } ?>
                 </div> 
             </div>         
         </div>     

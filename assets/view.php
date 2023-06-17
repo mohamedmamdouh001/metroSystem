@@ -4,15 +4,17 @@ include '../config/config.php';
 if(empty($_GET['id'])){
   header("location:educationSystem.php");
 }
-$student_id = $_GET['id'];
+$request_id = $_GET['id'];
 $sql ="SELECT *FROM `student`
       INNER JOIN `reqeust`
       ON student.student_id = reqeust.student_id
       JOIN `education_athourity` 
       ON reqeust.edu_id = education_athourity.id
       JOIN `metro_office`
-      ON reqeust.edu_id = metro_office.id
-      WHERE reqeust.request_id = '$student_id' ";
+      ON reqeust.metro_id = metro_office.id
+      LEFT JOIN `payment`
+      ON reqeust.request_id = payment.request_id
+      WHERE reqeust.request_id = '$request_id' ";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 
@@ -80,6 +82,9 @@ $row = mysqli_fetch_assoc($result);
           if($row['request_status'] == "Accepted from Your Education Authority and you have to pay"){ ?>
             <td><?="Accepted from the Education Authority."?></td>
           <?php
+          } else{ ?>
+            <td><?=$row['request_status']?></td>
+          <?php
           }
          ?>
 
@@ -107,7 +112,20 @@ $row = mysqli_fetch_assoc($result);
       <tr>  
         <th scope="row ">National Id photo</th>  <td> <img src="../student_img/personal_img/<?=$row['identity_img']?> " class="w-25 img-fluid rounded-circle mb-2" alt="admin">
         </td>
-
+      </tr>
+      <tr>  
+        <th scope="row ">Payment Method</th>
+        <td>
+          <?php
+            if (str_contains($row['payment_method'], "jpg") || str_contains($row['payment_method'], "jpeg")) { ?>
+              <img src="../student_img/personal_img/<?=$row['payment_method']?> " class="w-25 img-fluid rounded-circle mb-2" alt="admin">
+          <?php
+            } else{ 
+              echo "Payed by ". $row['payment_method'];
+            }
+          ?>
+        </td>
+      </tr>
       </form>
     </table>
   </form>

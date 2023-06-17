@@ -17,10 +17,6 @@ function checkType($img_ext){
 if(isset($_POST['request'])){
     $user_email = $_SESSION['email'];
 
-    $fullname = $_POST['fullname'];
-    $national_id = $_POST['national_id'];
-    $sql = "UPDATE `student` SET `national_id`= '$national_id' AND `full_name`= '$fullname' WHERE `email`= '$user_email' ";
-    mysqli_query($conn, $sql);
 
     $sql = "SELECT * FROM `student` WHERE `email`= '$user_email'";
     $result = mysqli_query($conn, $sql);
@@ -93,7 +89,7 @@ if(isset($_POST['request'])){
     move_uploaded_file($_FILES["national_id_img"]["tmp_name"], $target_file_national);
     move_uploaded_file($_FILES["personal_img"]["tmp_name"], $target_file_personal);
  
-    $stmt ="INSERT INTO `reqeust`(`phone`, `address`, `edu_stage`, `edu_level`, `edu_auth`,
+    $stmt_1 ="INSERT INTO `reqeust`(`phone`, `address`, `edu_stage`, `edu_level`, `edu_auth`,
             `near_station`, `personal_img`, 
             `identity_img`, `id_card_img`, `start_station`, `end_station`, `edu_id`, 
             `metro_id`, `student_id`) 
@@ -101,7 +97,7 @@ if(isset($_POST['request'])){
             '$national_id_img', '$edu_id_photo', '$start_station', '$end_station', 
             '$edu_auth_id', '$metro_office_id', '$student_id') ";
     
-    mysqli_query($conn, $stmt);
+    mysqli_query($conn, $stmt_1);
 
 
    header("location:../assets/studentProfile.php");

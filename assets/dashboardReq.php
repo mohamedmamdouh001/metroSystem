@@ -13,6 +13,17 @@ if(isset($_GET['logout'])){
     unset($_SESSION['admin_id']);
     header("location:loginAdmin.php");
 }
+$sql = "SELECT * FROM `admin` WHERE id='$admin_id'";
+$result = mysqli_query($conn, $sql);
+$admin_arr = mysqli_fetch_assoc($result);
+
+$stmt_1 = " SELECT * FROM `student`
+            INNER JOIN `reqeust`
+            ON student.student_id = reqeust.student_id";
+$result_2 = mysqli_query($conn, $stmt_1);
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,15 +50,14 @@ if(isset($_GET['logout'])){
         <div class="sidebar-content">
             <div class="sidebar-user">
                 <img src="sassPract/css/img/adminIcons/personal-information.png " class="w-25 img-fluid rounded-circle mb-2" alt="admin">
-                <div class="fw-bold">admin name</div>
-                <p>admin</p>
+                <div class="fw-bold"><?=$admin_arr['admin_name']?></div>
+                <p>Admin's Dashboard</p>
             </div>
 
             <ul class="sidebar-nav ">
                     <ul>
                         <li class="sidebar-item "><a class="sidebar-link text-white" href="dashboard.php">Dashboard</a></li>
                         <li class="sidebar-item dashLinkActive"><a class="sidebar-link text-white" href="#">Requests</a></li>
-                        <li class="sidebar-item"><a class="sidebar-link text-white" href="dashboardStd.php">Students</a></li>
                         <li class="sidebar-item"><a class="sidebar-link text-white" href="dashboardEdu.php">Education</a></li>
                         <li class="sidebar-item"><a class="sidebar-link text-white"href="dashboardOffices.php">Offices</a></li>  <br>
                         <li class="sidebar-item"><form action="" method="get"><button name="logout" class="sidebar-link text-white" style="border: 0px;" >Log Out</button></form></li>
@@ -75,17 +85,12 @@ if(isset($_GET['logout'])){
 <div class="header mt-5 mb-5
 ">
     <h1 class="header-title mb-3 ps-3">
-        Welcome back admin
+        Welcome Back, <?=$admin_arr['admin_name']?>
     </h1>
    <div class="reqTypeHolder d-flex">
 <h3 class="allRequsets ms-3 text-black-50 reqActive" style="cursor: pointer;">Requsets</h3>
    </div>
-   <h3 class="ms-3 mt-3">
-    <form action="">
-  
-        <input type="search " placeholder="   search" class="rounded-pill adminSearch" name="" id="">
-    </form>
-</h3>
+
 </div>
 <div class="row d-flex ">
         <table class="table table-bordered ">
@@ -99,33 +104,21 @@ if(isset($_GET['logout'])){
               <th>view</th>
               <th>Delete</th>
             </tr>
-            <tr>
-              <td>1920011</td>
-              <td>Ahmed</td>
-              <td>Giza</td>
-              <td>helwan</td>
-              <td>accepted</td>
-              <td><button class="viewBtn dashBtnn rounded-pill ">View</button></td>
-              <td> <button class="deleteBtn dashBtnn rounded-pill ">Delete</button> </td>
-            </tr>
-            <tr>
-              <td>1920011</td>
-              <td>Ahmed</td>
-              <td>Giza</td>
-              <td>helwan</td>
-              <td>accepted</td>
-              <td><button  class="rounded-pill viewBtn dashBtnn"> View</button></td>
-              <td> <button  class="deleteBtn dashBtnn rounded-pill ">Delete</button> </td>
-            </tr>
-            <tr>
-              <td>1920011</td>
-              <td>Ahmed</td>
-              <td>Giza</td>
-              <td>helwan</td>
-              <td>accepted</td>
-              <td><button  class="viewBtn dashBtnn rounded-pill ">View</button></td>
-              <td> <button  class="deleteBtn dashBtnn rounded-pill ">Delete</button> </td>
-            </tr>
+            <?php
+                while ($req_arr = mysqli_fetch_assoc($result_2)) { ?>
+                    <tr>
+                        <td><?=$req_arr['request_id']?></td>
+                        <td><?=$req_arr['full_name']?></td>
+                        <td><?=$req_arr['start_station']?></td>
+                        <td><?=$req_arr['end_station']?></td>
+                        <td><?=$req_arr['request_status']?></td>
+                        <td><a href="view.php?id=<?= $req_arr['request_id'] ?>" style="text-decoration: none;" class="viewBtn dashBtnn rounded-pill ">View</a></td>
+                        <td><a href="../handlers/cancel-metro.php?id=<?= $req_arr['request_id'] ?>" style="text-decoration: none;" class="deleteBtn dashBtnn rounded-pill ">Delete</a> </td>
+                    </tr>
+            <?php
+                }
+            ?>
+
        
           </table>
     </div>

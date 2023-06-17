@@ -28,10 +28,10 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item p-2">
-                <a class="nav-link fs-4 text-white-50 linkLanding" aria-current="page" href="signup-login.php">Log in</a>
+                <a class="nav-link fs-4 text-white-50 linkLanding" aria-current="page" href="login.php">Log in</a>
               </li>
               <li class="nav-item p-2">
-                <a class="nav-link fs-4 text-white-50 linkLanding" aria-current="page" href="signup-login.php">Sign up</a>
+                <a class="nav-link fs-4 text-white-50 linkLanding" aria-current="page" href="signup.php">Sign up</a>
               </li>
             </ul>
           </div>
@@ -45,7 +45,7 @@
 <div class="row  mt-5">
   <div class="col-lg-8 col-md-6 col-sm-12 p-5">
     <h1  class="p-3 text-white-50"> <b>Get METRO subscription in a faster way</b> </h1>
-    <form method="post" action="signup-login.php"><button class="mt-3 ms-3 landingBtn rounded-pill " id="subscribeButton">Subscribe now</button> </form>
+    <form method="post" action="signup.php"><button class="mt-3 ms-3 landingBtn rounded-pill " id="subscribeButton">Subscribe now</button> </form>
   </div>
   <div class="col-lg-4 col-md-6 col-sm-12">
     <img src="sassPract/css/img/studentImg/train.png" alt="" width="350" height="400" class=" train">

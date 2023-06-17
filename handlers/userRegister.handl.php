@@ -15,7 +15,7 @@ if (isset($_POST['submit'])){
    $nationalID = $_POST['national_id'];
    $birthdate = $_POST['birthdate'];
    $gender = $_POST['gender'];
-   //if
+   
    $sql = "SELECT * FROM `student` WHERE `email` = '$email' ";
    $result = mysqli_query($conn, $sql);
    $count = mysqli_num_rows($result);
@@ -26,11 +26,11 @@ if (isset($_POST['submit'])){
       $_SESSION["email"] = $email;
       $_SESSION["national_id"] = $nationalID;
       $_SESSION["success"] = "Student registration done successfully"; //Session
-      header("location:../assets/signup-login.php");
+      header("location:../assets/request.php");
    }
    else{
       $_SESSION['error'] = "Student is already exist"; //Session
-      header("location:../assets/signup-login.php");
+      header("location:../assets/signup.php");
    }
 
 }

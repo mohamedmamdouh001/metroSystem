@@ -13,6 +13,16 @@ if(isset($_GET['logout'])){
     unset($_SESSION['admin_id']);
     header("location:loginAdmin.php");
 }
+$sql = "SELECT * FROM `admin` WHERE id='$admin_id'";
+$result = mysqli_query($conn, $sql);
+$admin_arr = mysqli_fetch_assoc($result);
+
+$stmt_1 = "SELECT COUNT(*) FROM `metro_office`";
+$result_2 = mysqli_query($conn, $stmt_1);
+$count_edu = mysqli_fetch_assoc($result_2);
+
+$stmt_2 = "SELECT * FROM `metro_office`";
+$result_3 = mysqli_query($conn, $stmt_2);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,15 +49,14 @@ if(isset($_GET['logout'])){
         <div class="sidebar-content">
             <div class="sidebar-user">
                 <img src="sassPract/css/img/adminIcons/personal-information.png " class="w-25 img-fluid rounded-circle mb-2" alt="admin">
-                <div class="fw-bold">admin Offices</div>
-                <p>admin</p>
+                <div class="fw-bold"><?=$admin_arr['admin_name']?></div>
+                <p>Admin's Dashboard</p>
             </div>
 
             <ul class="sidebar-nav ">
                     <ul>
                         <li class="sidebar-item "><a class="sidebar-link text-white" href="dashboard.php">Dashboard</a></li>
                         <li class="sidebar-item "><a class="sidebar-link text-white" href="dashboardReq.php">Requests</a></li>
-                        <li class="sidebar-item "><a class="sidebar-link text-white" href="dashboardStd.php">Students</a></li>
                         <li class="sidebar-item "><a class="sidebar-link text-white" href="dashboardEdu.php">Education</a></li>
                         <li class="sidebar-item dashLinkActive"><a class="sidebar-link"href="#">Offices</a></li>  <br>
                         <li class="sidebar-item"><form action="" method="get"><button name="logout" class="sidebar-link text-white" style="border: 0px;" >Log Out</button></form></li>
@@ -74,10 +83,10 @@ if(isset($_GET['logout'])){
 <div class="header mt-5 mb-5
 ">
     <h1 class="header-title mb-3 ps-3">
-        Welcome back admin
+    Welcome Back, <?=$admin_arr['admin_name']?>
     </h1>
    <div class=" d-flex">
-<h3 class="ms-3 text-black-50"><!--from data  base--> Metro Stations</h3>
+<h3 class="ms-3 text-black-50"><!--from data  base--><?=$count_edu['COUNT(*)']?> Metro Stations</h3>
   <h3><button type="button" class="btn btn-primary ms-5" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
    Add
   </button>
@@ -87,11 +96,11 @@ if(isset($_GET['logout'])){
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
-        <form action="" class="eduInfo">
-            <input type="text" placeholder="Name" class="eduInfoInput"> 
-            <input type="text" placeholder="line number" class="eduInfoInput" class="eduInfoInput">
-       
-            <button class="dashBtnn">Add</button>
+        <form action="../handlers/add-metro.php" method="post" class="eduInfo">
+            <input type="text" name="metro_name" placeholder="Metro Office Name" class="eduInfoInput"> 
+            <input type="text" name="metro_pass" placeholder="Enter New Password" class="eduInfoInput">
+            <input type="number" min="1" max="3" name="line_num" placeholder="Line Number" class="eduInfoInput">
+            <button type="submit" name="add" class="dashBtnn">Add</button>
         </form>
         </div>
         <div >
@@ -106,35 +115,21 @@ if(isset($_GET['logout'])){
           <thead> <p class="fs-2" style="background-color: #eee;">Metro Station Data</p></thead>
             <tr>
                 <th>Id</th>
-                <th>metro station name </th>
-                <th>line number</th>
-          
+                <th>Metro Office Name </th>
+                <th>Line Number</th>
+                <th>Delete Station</th>
             </tr>
-            <tr>
-              <td>1920011</td>
-              <td>Ahmed</td>
-              <td>1</td>
-             
-            </tr>
-            <tr>
-              <td>1920011</td>
-              <td>Ahmed</td>
-              <td>1</td>
-           
-            </tr>
-            <tr>
-              <td>1920011</td>
-              <td>Ahmed</td>
-              <td>1</td>
-         
-              
-
-                    </div>
-                  </div>
-                </div>
-              </div></td>
-            </tr>
-       
+            <?php
+              while ($metro_arr = mysqli_fetch_assoc($result_3)) { ?>
+              <tr>
+                <td><?=$metro_arr['id']?></td>
+                <td><?=$metro_arr['metro_station_name']?></td>
+                <td><?=$metro_arr['line_number']?></td>
+                <td><a href="../handlers/remove_metro.php?id=<?=$metro_arr['id']?>" style="text-decoration: none;" class="dashBtnn">Remove</a></td>
+              </tr>
+            <?php
+              }
+            ?>
           </table>
     </div>
 

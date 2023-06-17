@@ -33,7 +33,7 @@ session_start();
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item p-2">
-                <a class="nav-link fs-4" aria-current="page" href="index.html">Home</a>
+                <a class="nav-link fs-4" aria-current="page" href="index.php">Home</a>
               </li>
             </ul>
           </div>
@@ -59,13 +59,6 @@ session_start();
             </div>
             <?php
             unset($_SESSION['error']);
-            }
-            if (isset($_SESSION['success'])) {?>
-              <div class="alert alert-success" role="alert">
-              <?= $_SESSION['success'] ?>
-            </div>
-            <?php
-            unset($_SESSION['success']);
             }
             ?>
 

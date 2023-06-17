@@ -13,6 +13,17 @@ if(isset($_GET['logout'])){
     unset($_SESSION['admin_id']);
     header("location:loginAdmin.php");
 }
+$sql = "SELECT * FROM `admin` WHERE id='$admin_id'";
+$result = mysqli_query($conn, $sql);
+$admin_arr = mysqli_fetch_assoc($result);
+
+$stmt_1 = "SELECT COUNT(*) FROM `education_athourity`";
+$result_2 = mysqli_query($conn, $stmt_1);
+$count_edu = mysqli_fetch_assoc($result_2);
+
+$stmt_2 = "SELECT * FROM `education_athourity`";
+$result_3 = mysqli_query($conn, $stmt_2);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,15 +50,14 @@ if(isset($_GET['logout'])){
         <div class="sidebar-content">
             <div class="sidebar-user">
                 <img src="sassPract/css/img/adminIcons/personal-information.png " class="w-25 img-fluid rounded-circle mb-2" alt="admin">
-                <div class="fw-bold">admin name</div>
-                <p>admin</p>
+                <div class="fw-bold"><?=$admin_arr['admin_name']?></div>
+                <p>Admin's Dashboard</p>
             </div>
 
             <ul class="sidebar-nav ">
                     <ul>
                         <li class="sidebar-item "><a class="sidebar-link text-white" href="dashboard.php">Dashboard</a></li>
                         <li class="sidebar-item "><a class="sidebar-link text-white" href="dashboardReq.php">Requests</a></li>
-                        <li class="sidebar-item "><a class="sidebar-link text-white" href="dashboardStd.php">Students</a></li>
                         <li class="sidebar-item dashLinkActive"><a class="sidebar-link text-white" href="#">Education</a></li>
                         <li class="sidebar-item"><a class="sidebar-link text-white"href="dashboardOffices.php">Offices</a></li>  <br>
                         <li class="sidebar-item"><form action="" method="get"><button name="logout" class="sidebar-link text-white" style="border: 0px;" >Log Out</button></form></li>
@@ -74,10 +84,10 @@ if(isset($_GET['logout'])){
 <div class="header mt-5 mb-5
 ">
     <h1 class="header-title mb-3 ps-3">
-        Welcome back admin
+    Welcome Back, <?=$admin_arr['admin_name']?>
     </h1>
    <div class=" d-flex">
-<h3 class="ms-3 text-black-50"><!--from data  base--> 50 Education Authority</h3>
+<h3 class="ms-3 text-black-50"><!--from data  base--> <?=$count_edu['COUNT(*)']?> Education Authority</h3>
   <h3><button type="button" class="btn btn-primary ms-5" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
    Add
   </button>
@@ -87,27 +97,17 @@ if(isset($_GET['logout'])){
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
-        <form action="" class="eduInfo">
-            <input type="text" placeholder="Name" class="eduInfoInput"> 
-            <input type="text" placeholder="Region" class="eduInfoInput">
-            <div style="font-size:small;">
-            <input type="radio" name="typeOfEdu" id="school" >
-            <label for="school">school</label>
-            <input type="radio" name="typeOfEdu" id="University">
-            <label for="University">University</label>
-        </div>
-            <button class="dashBtnn">Add</button>
+        <form action="../handlers/add-edu.php" method="post" class="eduInfo">
+            <input type="text" name="edu_name" placeholder="Education Authority Name" class="eduInfoInput"> 
+            <input type="text" name="edu_pass" placeholder="Enter New Password" class="eduInfoInput">
+            <input type="text" name="region" placeholder="Region" class="eduInfoInput">
+            <button type="submit" name="add" class="dashBtnn">Add</button>
         </form>
         </div>
         <div >
      </h3>
    </div>
-   <h3 class="ms-3 mt-3">
-    <form action="">
-  
-        <input type="search " placeholder="   search" class="rounded-pill adminSearch" name="" id="">
-    </form>
-</h3>
+
 </div>
 <div class="row d-flex ">
         <table class="table table-bordered ">
@@ -118,31 +118,17 @@ if(isset($_GET['logout'])){
               <th>Region</th>
               <th>Remove</th>
             </tr>
-            <tr>
-              <td>1920011</td>
-              <td>Ahmed</td>
-              <td>Giza</td>
-              <td><button class="dashBtnn">Remove</button></td>
-            </tr>
-            <tr>
-              <td>1920011</td>
-              <td>Ahmed</td>
-              <td>Giza</td>
-              <td><button class="dashBtnn">Remove</button></td>
-            </tr>
-            <tr>
-              <td>1920011</td>
-              <td>Ahmed</td>
-              <td>Giza</td>
-              <td><button class="dashBtnn">Remove</button></td>
-              
-
-                    </div>
-                  </div>
-                </div>
-              </div></td>
-            </tr>
-       
+            <?php
+              while ($edu_arr = mysqli_fetch_assoc($result_3)) { ?>
+                <tr>
+                <td><?=$edu_arr['id']?></td>
+                <td><?=$edu_arr['name']?></td>
+                <td><?=$edu_arr['region']?></td>
+                <td><a href="../handlers/remove_edu.php?id=<?=$edu_arr['id']?>" style="text-decoration: none;" class="dashBtnn">Remove</a></td>
+              </tr>
+            <?php
+              }
+            ?>
           </table>
     </div>
 

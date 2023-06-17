@@ -18,7 +18,7 @@ $result = mysqli_query($conn, $stmt);
 $row = mysqli_fetch_assoc($result);
 
 if(empty($user_email)){
-  header("location:signup-login.php");
+  header("location:login.php");
   die();
 }
 
@@ -57,9 +57,6 @@ if(empty($user_email)){
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item p-2">
-                <a class="nav-link fs-4" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item p-2">
               <?php if(!empty($_SESSION['email'])){ ?>
                 <form method="get" action="">
                 <button class="profileLogOut nav-link position-relative fs-4" aria-current="page" style="border:0px;" type="submit" name="logout">Log Out</button>
@@ -67,7 +64,7 @@ if(empty($user_email)){
               <?php }
               if(isset($_GET['logout'])){
                 unset($_SESSION['email']);
-                header("location:signup-login.php");
+                header("location:login.php");
               }
               ?> 
               </li>
@@ -93,7 +90,7 @@ if(empty($user_email)){
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <label for="fullName" class=" m-2 ms-2"> Full Name </label>
                     <br>
-                    <input type="text" class="stdInput p-2 m-2 " autofocus placeholder=" Your Name" id="fullName" value="<?=$row['full_name'] ?>" name="fullname" required >
+                    <input type="text" class="stdInput p-2 m-2 " autofocus placeholder=" Your Name" id="fullName" value="<?=$row['full_name'] ?>" name="fullname" readonly >
                     <br>
                     <label for="email" class=" m-2 ms-2"> Email </label>
                     <br>
@@ -101,7 +98,7 @@ if(empty($user_email)){
                     <br>
                     <label for="national_Id" class=" m-2 ms-2"> National ID</label>
                     <br>
-                      <input type="text" class="stdInput p-2 m-2" placeholder="Your National ID" id="national_Id" value="<?=$row['national_id'] ?>" name="national_id" required> 
+                      <input type="text" class="stdInput p-2 m-2" placeholder="Your National ID" id="national_Id" value="<?=$row['national_id'] ?>" name="national_id" readonly> 
                          <!-- pattern="[0-9]{14}" -->
                     <br>
                     <label for="phoneNumber" class="m-2 ms-2"> Phone </label>
@@ -161,13 +158,13 @@ if(empty($user_email)){
                       ?>
                     </select>
                     <br>
-                    <label for="nationalId" class="personalPhoto ps-2 p-1 m-5 ms-2" text-white-50>  Your National ID Photo    </label>
+                    <label for="nationalId" class="personalPhoto ps-2 p-1 m-5 ms-2" text-white-50> National ID Photo </label>
                     <input type="file" accept="image/*" class="file p-2 m-2" placeholder="Your photo" id="nationalId" name="national_id_img" required  >
-                    <label for="personalPhoto" class="personalPhoto ps-2 p-1 m-5 ms-2" text-white-50>  Your Personal Photo </label>
+                    <label for="personalPhoto" class="personalPhoto ps-2 p-1 m-5 ms-2" text-white-50> Personal Photo </label>
                     <input type="file" accept="image/*" class="file p-2 m-2" placeholder="Your photo" id="personalPhoto" name="personal_img" required  >
                 </div>
                 <div class="col-sm-0 col-md-0 col-lg-4">
-                    <label for="idPhoto" class="idPhoto ps-2 p-1 mt-5 ms-2"> Your ID Photo </label>
+                    <label for="idPhoto" class="idPhoto ps-2 p-1 mt-5 ms-2"> ID Photo </label>
                     <input type="file" accept="image/*" class="file" placeholder=" Your ID Photo" id="idPhoto" name="edu_id_photo" required >
                     <label for="from" class="m-2 ms-2"> From </label>
                     <br>

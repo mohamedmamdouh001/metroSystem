@@ -49,7 +49,7 @@ if(isset($_POST['pay-visa'])){
   <title>Payment Template</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light  p-3 sticky-top">
+<nav class="navbar navbar-expand-lg navbar-light  p-3 sticky-top"style="background-color: #9d9d9d;">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="sassPract/css/img/studentImg/istanbul-metro-logo.png" alt="" width="50" height="40" class="d-inline-block align-text-top ">
@@ -65,7 +65,7 @@ if(isset($_POST['pay-visa'])){
               <li class="nav-item p-2 ">
               <?php if(!empty($_SESSION['email'])){ ?>
                 <form method="get" action="">
-                    <button class="profileLogOut nav-link position-relative fs-4" aria-current="page" style="border:0px;" type="submit" name="logout">Log Out
+                    <button class="profileLogOut nav-link position-relative fs-4" aria-current="page" style="border:0px; background-color: transparent;" type="submit" name="logout">Log Out
                         <a class="navbar-brand" href="#">
                             <img src="sassPract/css/img/studentImg/logout (1).png" alt="" width="40" height="35" class="logoutIcon d-none d-lg-inline-block p-1 ms-2">
                         </a>
@@ -83,8 +83,9 @@ if(isset($_POST['pay-visa'])){
           </div>
         </div>    
     </nav>                   
-  <div class="containerPayment container">
-    <div class="row">
+    <div class="loginBackground">
+  <div class="containerPayment container" style="background-color: #dedede;">
+    <div class="row mt-3">
       <div class="col-md-12">
         <h1 class="PaymentTitle">Payment Details</h1>
         <form action="" enctype="multipart/form-data" method="post" >
@@ -110,7 +111,7 @@ if(isset($_POST['pay-visa'])){
             <input type="file" name="fawry-reciept" class="form-control payInp" id="payment-img" required>
             <input type="hidden" name="student-id" value="<?=$id?>" >
           </div>
-          <button type="submit" class="btn btn-dark inpBtn " name="pay-fawry" id="btnFawry">Pay Now</button>
+          <button type="submit" class="btnn" name="pay-fawry" id="btnFawry">Pay Now</button>
         </form>
 
 
@@ -141,12 +142,13 @@ if(isset($_POST['pay-visa'])){
             <input type="hidden" name="student-id" value="<?=$id?>" >
           </div>
           <div class="text-center">
-            <button type="submit" class="btn btn-dark inpBtn " name="pay-visa" id="btnVisa">Pay Now</button>
+            <button type="submit" class="btnn" name="pay-visa" id="btnVisa">Pay Now</button>
           </div>
         </form>
       </div>
     </div>
   </div>
+    </div>
 <script src="js/payment.js"></script>
 </body>
 

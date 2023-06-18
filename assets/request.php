@@ -46,7 +46,7 @@ if(empty($user_email)){
     <!-- Navigation bar at the top -->
 <div class="background">
     <div>
-      <nav class="navbar navbar-expand-lg navbar-light  p-3 sticky-top">
+      <nav class="navbar navbar-expand-lg navbar-light  p-3 sticky-top" style="background-color: #9d9d9d;">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="sassPract/css/img/studentImg/istanbul-metro-logo.png" alt="" width="50" height="40" class="d-inline-block align-text-top ">
@@ -59,7 +59,7 @@ if(empty($user_email)){
               <li class="nav-item p-2">
               <?php if(!empty($_SESSION['email'])){ ?>
                 <form method="get" action="">
-                <button class="profileLogOut nav-link position-relative fs-4" aria-current="page" style="border:0px;" type="submit" name="logout">Log Out</button>
+                <button class="profileLogOut nav-link position-relative fs-4" aria-current="page" style="border:0px; background-color: transparent;" type="submit" name="logout">Log Out</button>
                 </form>
               <?php }
               if(isset($_GET['logout'])){

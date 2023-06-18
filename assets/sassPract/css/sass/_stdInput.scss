@@ -4,11 +4,12 @@
     border: 1px solid rgba(0, 0, 0, 0.275);
     border-radius: 8px;
     -webkit-border-radius: 8px;
+    background-color: #ffe37f;
 }
 .row .stdInput:focus,
 .row .stdInput:hover,
 .row .stdInput::selection{
-outline: 2px solid #7cde81bb;
+outline: 2px solid #ffe37f;
 border-radius: 10px;
 -webkit-border-radius: 10px;
 }

@@ -116,10 +116,11 @@
   border: 1px solid rgba(0, 0, 0, 0.275);
   border-radius: 8px;
   -webkit-border-radius: 8px;
+  background-color: #ffe37f;
 }
 
 .row .stdInput::-moz-selection {
-  outline: 2px solid rgba(124, 222, 129, 0.7333333333);
+  outline: 2px solid #ffe37f;
   border-radius: 10px;
   -webkit-border-radius: 10px;
 }
@@ -127,7 +128,7 @@
 .row .stdInput:focus,
 .row .stdInput:hover,
 .row .stdInput::selection {
-  outline: 2px solid rgba(124, 222, 129, 0.7333333333);
+  outline: 2px solid #ffe37f;
   border-radius: 10px;
   -webkit-border-radius: 10px;
 }
@@ -239,7 +240,7 @@
   height: fit-content;
   width: 100%;
   z-index: -1;
-  background-color: #eeeeee;
+  background-color: #dedede;
 }
 
 .file {
@@ -250,7 +251,7 @@
 .personalPhoto {
   display: block;
   cursor: pointer;
-  background-color: white;
+  background-color: ffe37f;
   color: #757575;
   width: 250px;
   height: 38px;
@@ -260,7 +261,7 @@
 }
 
 .row .idPhoto::-moz-selection {
-  outline: 2px solid #0ab6a1;
+  outline: 2px solid #ffe37f;
   border-radius: 10px;
   -webkit-border-radius: 10px;
   cursor: pointer;
@@ -269,7 +270,7 @@
 .row .idPhoto:focus,
 .row .idPhoto:hover,
 .row .idPhoto::selection {
-  outline: 2px solid #0ab6a1;
+  outline: 2px solid #ffe37f;
   border-radius: 10px;
   -webkit-border-radius: 10px;
   cursor: pointer;
@@ -281,7 +282,7 @@
   right: -110px;
   top: 2px;
   padding: 5px;
-  background-color: #0ab6a1;
+  background-color: #65e1e0;
   color: white;
   border-radius: 12px;
   -webkit-border-radius: 12px;
@@ -293,7 +294,7 @@
   content: "UPLOAD";
   right: -46px;
   padding: 5px;
-  background-color: #0ab6a1;
+  background-color: #65e1e0;
   color: white;
   border-radius: 12px;
   -webkit-border-radius: 12px;
@@ -784,8 +785,8 @@ h3:hover {
 }
 
 .containerPayment {
+  background: linear-gradient(135deg, #9d9d9d, #dedede);
   max-width: 500px;
-  margin-top: 100px;
   padding: 20px;
   border-radius: 5px;
   background-color: #fff9f9;

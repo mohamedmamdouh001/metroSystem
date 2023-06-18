@@ -5,7 +5,7 @@
     height: fit-content;
     width: 100%;
     z-index: -1;
-    background-color: #eeeeee;
+    background-color: #dedede;
 }
 
 .file {
@@ -15,7 +15,7 @@
 .personalPhoto {
     display: block;
     cursor: pointer;
-    background-color: white;
+    background-color: ffe37f;
     color: #757575;
     width: 250px;
     height: 38px;
@@ -27,7 +27,7 @@
 .row .idPhoto:focus,
 .row .idPhoto:hover,
 .row .idPhoto::selection{
-    outline: 2px solid #0ab6a1;
+    outline: 2px solid #ffe37f;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     cursor: pointer;
@@ -38,7 +38,7 @@
     right: -110px;
     top: 2px;
     padding: 5px;
-    background-color: #0ab6a1;
+    background-color: #65e1e0;
     color: white;
     border-radius: 12px;
     -webkit-border-radius: 12px;
@@ -50,7 +50,7 @@
     content: "UPLOAD";
     right: -46px;
     padding: 5px;
-    background-color: #0ab6a1;
+    background-color: #65e1e0;
     color: white;
     border-radius: 12px;
     -webkit-border-radius: 12px;

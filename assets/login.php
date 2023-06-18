@@ -44,12 +44,21 @@ session_start();
   <!-- start landing ----- -->
   <div class="container ">
     <div class="row ">
-      <div class="col-lg-6 col-md-6 col-sm-12 position-relative">
+      <div class="col d-flex justify-content-center align-items-center p-3 ">
        
  <!-- ############### sign in start ##################### ------ -->
-        <div class="logIn-signUpForm ps-3 ">
+        <div class="logIn-signUpForm ps-3  " style="width: 500px;">
           <h1 class="text-center pt-5 me-3">Welcome</h1>
         <form class="logIn  " method="post" action="../handlers/userLogin.handl.php" onSubmit="return validateLogIn()">
+        <?php
+            if (isset($_SESSION['error'])) {?>
+              <div class="alert alert-danger" role="alert">
+              <?= $_SESSION['error'] ?>
+            </div>
+            <?php
+            unset($_SESSION['error']);
+            }
+            ?>
           <div class="mb-3 mt-3">
             <input type="text" class="form-control Email inputStyle"placeholder="Email address" id="emailLogIn" aria-describedby="emailHelp"name="email" >
             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>

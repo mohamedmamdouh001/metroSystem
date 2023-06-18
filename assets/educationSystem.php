@@ -52,19 +52,19 @@ $edu_arr = mysqli_fetch_assoc($result);
                 <p class="text-white">Education Authority Dashboard</p>
             </div>
 
-            <ul class="sidebar-nav ">
+            <ul class="sidebar-nav p-3">
                     <ul>
-                        <li class="sidebar-item eduActive "><a class="sidebar-link text-white" href="#">Requsets</a></li>
+                        <li class="sidebar-item eduActive  ps-3 "><a class="sidebar-link text-white " href="#">Requsets</a></li>
+                        <li class="sidebar-item mt-3 eduActive  ps-3"> <form action="" method="get" > <button name="logout" class="sidebar-link text-white" style="border: 0px;" href="#">Log Out</button> </form></li>
                     </ul>
-
-
+                 
             </ul>
-            <ul>
-                    <li class="sidebar-item mt-3 eduActive "> <form action="" method="get" > <button name="logout" class="sidebar-link text-white" style="border: 0px;" href="#">Log Out</button> </form></li>
-            </ul>
+          
+          
 
 
         </div>
+   
     </nav>
     <!-- end side bar  -->
 <!-- start main  -->
@@ -75,7 +75,9 @@ $edu_arr = mysqli_fetch_assoc($result);
             <a class=" d-flex me-2 sidebar-toggle">
                 <i class="fa-sharp fa-solid fa-bars fa-2x " style="color: white; cursor: pointer;"></i>
             </a>
+         
             </div>
+     
           
       </nav>        
       <!-- end nav bar                 -->
@@ -90,13 +92,13 @@ $edu_arr = mysqli_fetch_assoc($result);
    <div class="reqTypeHolder d-flex">
 <h3 class="allRequsets ms-3 text-black-50 reqActive" style="cursor: pointer;">Requsets</h3>
    </div>
-   <h3 class="ms-3 mt-3">
+   <h4 class="ms-3 mt-3">
     <form action="" method="post" >
         <input type="search " placeholder=" Type to search" class="rounded-pill reqSearch" name="search" id="">
-        <button type="submit" class="btn btn-success" name="search-btn" >Search</button>
-        <input type="submit" class="btn btn-success" value="Reset Results" name="reset-btn" >
+        <button type="submit" class="viewBtn eduBtnn rounded-pill btn " name="search-btn" >Search</button>
+        <input type="submit" class="viewBtn eduBtnn rounded-pill btn " value="Reset Results" name="reset-btn" >
     </form>
-</h3>
+</h4>
 </div>
 <div class="row d-flex ">
         <table class="table table-bordered ">

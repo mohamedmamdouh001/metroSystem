@@ -103,7 +103,7 @@ if(empty($user_email)){
                     <br>
                     <label for="phoneNumber" class="m-2 ms-2"> Phone </label>
                     <br>
-                    <input type="text" class="stdInput p-2 m-2" placeholder="Your Mobile Number" id="phoneNumber" name="phone"  required>
+                    <input type="text" class="stdInput p-2 m-2" placeholder="Your Mobile Number" id="phoneNumber" name="phone"  required pattern="[0-9]{11}">
                     <br>
                     <label for="address" class=" m-2 ms-2"> Address </label>
                     <br>
@@ -115,7 +115,6 @@ if(empty($user_email)){
                     <!-- <input type="text" class="stdInput p-2 m-2" id="eduStage" placeholder="Education Stage"  > -->
                     <select class="stdInput p-1 m-1" id="eduStage" name="edu_stage" required>
                       <option>University</option>
-                      <option>School</option>
                     </select>
                     <br>
                     <label for="eduLevel" class=" m-2 ms-2"> Education Level </label>
@@ -337,7 +336,7 @@ if(empty($user_email)){
                     </select>
                     <br>
                    <div class="ms-5">
-                  <button for="submit" class="btnn rounded-pill" id="makeArequest" type="submit" name="request">Make a request</button>
+                  <button for="submit" class="btnn rounded-pill mt-3" id="makeArequest" type="submit" name="request">Make a request</button>
                 </div>
                 </div>
             </form>

@@ -35,26 +35,27 @@
 .row .idPhoto::after {
     position: relative;
     content: "UPLOAD";
-    right: -50px;
+    right: -110px;
     top: 2px;
-    padding: 7px;
+    padding: 5px;
     background-color: #0ab6a1;
     color: white;
-    border-radius: 12px ;
-    -webkit-border-radius: 12px ;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
     font-size: small;
+
 }
 .row .personalPhoto::after {
-   position: relative;
-   content: "UPLOAD";
-   right: -166px;
-   top: -23px;
-   padding: 7px;
-   background-color: #0ab6a1;
-   color: white;
-   border-radius: 12px ;
-   -webkit-border-radius: 12px ;
-   font-size: small;
+    position: relative;
+    content: "UPLOAD";
+    right: -46px;
+    top: 0;
+    padding: 4px;
+    background-color: #0ab6a1;
+    color: white;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    font-size: small;
   
 }
 .row .personalPhoto:focus,

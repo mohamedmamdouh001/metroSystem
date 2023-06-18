@@ -35,6 +35,9 @@ session_start();
               <li class="nav-item p-2">
                 <a class="nav-link fs-4" aria-current="page" href="index.php">Home</a>
               </li>
+              <li class="nav-item p-2">
+                <a class="nav-link fs-4" aria-current="page" href="login.php">Login</a>
+              </li>
             </ul>
           </div>
         </div>    
@@ -44,12 +47,12 @@ session_start();
   <!-- start landing ----- -->
   <div class="container ">
     <div class="row ">
-      <div class="col-lg-6 col-md-6 col-sm-12 position-relative">
+      <div class="col d-flex justify-content-center align-items-center ">
  
-       <!-- ###############sign in end###################### ------ -->
+       
         <div class="logIn-signUpForm p-3 ">
            <!-- ################done##################### ------ -->
-        <form class="signUp  " id="signUp" method="POST" action="../handlers/userRegister.handl.php" onSubmit=" return validateSignUp()">
+        <form class="signUp p-3 " id="signUp" method="POST" action="../handlers/userRegister.handl.php" onSubmit=" return validateSignUp()">
           <div class="mb-3 mt-3">
             <h1 class="text-center">Join us</h1>
             <?php
@@ -63,10 +66,10 @@ session_start();
             ?>
 
             <div class="mb-3 d-flex">
-              <input type="firstName" class="form-control inputStyle"placeholder="First name" id="firstNameSignUp" aria-describedby="emailHelp" name="First_name">
-              <input type="lastName" class="form-control inputStyle"placeholder="Last name" id="lastNameSignUp" aria-describedby="emailHelp" name="Last_name">
+              <input type="firstName" class="form-control inputStyle"placeholder="First name" id="firstNameSignUp" aria-describedby="emailHelp" name="First_name"  minlength="3" maxlength="25" pattern="[A-Za-z]">
+              <input type="lastName" class="form-control inputStyle"placeholder="Last name" id="lastNameSignUp" aria-describedby="emailHelp" name="Last_name" minlength="3" maxlength="25" pattern="[A-Za-z]">
             </div>
-            <small class="text-danger" id="lengthNameErrorSignUp" style="display: none;" >User name must be between 3-20 character</small> <!-- Error message  -->
+          <!-- Error message  -->
           <div class="mb-3">
             <input type="text" class="form-control Email inputStyle"placeholder="Email address" id="emailSignUp" aria-describedby="emailHelp" name="email" >
           </div>
@@ -76,7 +79,7 @@ session_start();
             <input type="password" class="form-control confirmPassword inputStyle" placeholder="Confirm Password" id="conPasswordSignUp" name="confirm_password">
           </div>
           <small class="text-danger" id="errorConPasswordSignUp" style="display: none;">Password does not match</small><!-- Error message  -->
-          <small class="text-danger" id="errorPasswordSignUp" style="display: none;">Password must be with 8-20 character</small><!-- Error message  -->
+       
           <div class="mb-3">
             <input type="number" class="form-control  inputStyle" placeholder="National Id" id="nationalIdSignUp"name="national_id">
           </div>

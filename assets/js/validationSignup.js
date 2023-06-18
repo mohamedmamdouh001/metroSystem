@@ -6,23 +6,15 @@ function validateSignUp() {
     let passwordSignUp = document.getElementById("PasswordSignUp");
     let confirmPasswordSignUp = document.getElementById("conPasswordSignUp");
     let nationalIdSignUp = document.getElementById("nationalIdSignUp");
-    
-    
-    //check that the un is between 3 and 25
-    if(firstNameSignUp.value.length||lastNameSignUp.length<3&&firstNameSignUp.value.length||lastNameSignUp.length>25){
-      document.getElementById("lengthNameErrorSignUp").style.display="block";
-    }
+
+
     // Check that the email is properly formatted
     if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailSignUp.value)) {
-     document.getElementById("emailErrorSignUp").style.display="block";
+     document.getElementById("lengthNameErrorSignUp").style.display="block";
       return false;
     }
     
-    //check that password within 3- 25
-    if(passwordSignUp.value.length<3 && passwordSignUp.value.length>25){
-      document.getElementById("errorPasswordSignUp").style.display="block";
-      return false;
-    }
+   
     //check that password within 3- 25
     if(nationalIdSignUp.value.length!=14){
       document.getElementById("nationalIdErrorSigup").style.display="block";

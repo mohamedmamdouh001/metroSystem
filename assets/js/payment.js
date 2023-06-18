@@ -60,10 +60,6 @@ if (!/^[0-9]{3,4}$/.test(cvv.value)) {
   return false;
 }
 
-if(!/^[A-Za-z]/.test(name.value)){
-  document.getElementById("cardholderError").style.display="block";
-  return false;
-}
   // If all validation is done
   return true;
 }

@@ -148,7 +148,7 @@ if(empty($row)){
                             ?>
                                 <a href="../handlers/cancel.php?id=<?=$row['request_id']; ?>" class="btn btn-danger">Cancel</a>
                             <?php
-                            } elseif($row['request_status'] == "Rejected due to existance if invalid data"){ ?>
+                            } elseif($row['request_status'] == "Rejected due to existance of invalid data"){ ?>
                                 <h5>No action needed</h5>
                             <?php
                             } elseif($row['request_status'] == "Accepted from Your Education Authority and you have to pay"){ ?>

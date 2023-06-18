@@ -49,6 +49,40 @@ if(isset($_POST['pay-visa'])){
   <title>Payment Template</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light  p-3 sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="sassPract/css/img/studentImg/istanbul-metro-logo.png" alt="" width="50" height="40" class="d-inline-block align-text-top ">
+            </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item p-2">
+                <a class="nav-link fs-4" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item p-2 ">
+              <?php if(!empty($_SESSION['email'])){ ?>
+                <form method="get" action="">
+                    <button class="profileLogOut nav-link position-relative fs-4" aria-current="page" style="border:0px;" type="submit" name="logout">Log Out
+                        <a class="navbar-brand" href="#">
+                            <img src="sassPract/css/img/studentImg/logout (1).png" alt="" width="40" height="35" class="logoutIcon d-none d-lg-inline-block p-1 ms-2">
+                        </a>
+                    </button>
+                </form>
+              <?php }
+              if(isset($_GET['logout'])){
+                unset($_SESSION['email']);
+                header("location:login.php");
+              }
+              ?> 
+              </li>
+            </ul>
+
+          </div>
+        </div>    
+    </nav>                   
   <div class="containerPayment container">
     <div class="row">
       <div class="col-md-12">
@@ -102,8 +136,8 @@ if(isset($_POST['pay-visa'])){
           </div>
           <div class="mb-3" id="nameDetails">
             <label for="name" class="form-label">Cardholder Name</label>
-            <input type="text" class="form-control payInp" id="name" placeholder="Enter cardholder name" required>
-            <small class="text-danger" id="cardholderError" style="display: none;">Please enter a valid cardholder name</small>
+            <input type="text" class="form-control payInp" id="name" placeholder="Enter cardholder name" required >
+  
             <input type="hidden" name="student-id" value="<?=$id?>" >
           </div>
           <div class="text-center">

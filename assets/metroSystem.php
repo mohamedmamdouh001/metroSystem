@@ -51,15 +51,16 @@ $metro_arr = mysqli_fetch_assoc($result);
                 <div class="fw-bold text-white"><?=$metro_arr['metro_station_name']?> Station's Dashboard</div>
                 <p class="text-white"> Metro Office Subscription Dashboard</p>
             </div>
-            <ul class="sidebar-nav ">
+            <ul class="sidebar-nav p-3 ">
                 <ul>
-                    <li class="sidebar-item metroActive"><a class="sidebar-link text-white" href="#">Requsets</a></li>
+                    <li class="sidebar-item metroActive ps-3"><a class="sidebar-link text-white" href="#">Requsets</a></li>
+                    
+                <li class="sidebar-item mt-3 metroActive  ps-3"> <form action="" method="get" > <button name="logout" class="sidebar-link text-white" style="border: 0px;" href="#">Log Out</button> </form></li>
                 </ul>
 
             </ul>
-            <ul>
-                <li class="sidebar-item mt-3 eduActive "> <form action="" method="get" > <button name="logout" class="sidebar-link text-white" style="border: 0px;" href="#">Log Out</button> </form></li>
-            </ul>
+            
+            
         </div>
     </nav>
     <!-- end side bar  -->
@@ -89,8 +90,8 @@ $metro_arr = mysqli_fetch_assoc($result);
    <h3 class="ms-3 mt-3">
    <form action="" method="post" >
         <input type="search " placeholder=" Type to search" class="rounded-pill reqSearch" name="search" id="">
-        <button type="submit" class="btn btn-success" name="search-btn" >Search</button>
-        <input type="submit" class="btn btn-success" value="Reset Results" name="reset-btn" >
+        <button type="submit" class="viewBtn metoBtnn rounded-pill btn" name="search-btn" >Search</button>
+        <input type="submit" class="viewBtn metoBtnn rounded-pill btn" value="Reset Results" name="reset-btn" >
     </form>
 </h3>
 </div>
@@ -121,8 +122,8 @@ $metro_arr = mysqli_fetch_assoc($result);
                     <td><?= $row['full_name'] ?></td>
                     <td><?= $row['start_station'] ?></td>
                     <td><?= $row['end_station'] ?></td>
-                    <td><a href= "view.php?id=<?= $row['request_id'] ?>" class="viewBtn eduBtnn rounded-pill btn">View</a></td>
-                    <td> <a href="../handlers/metro_confirm.php?id=<?= $row['request_id']?>" class="viewBtn eduBtnn rounded-pill btn" >Confirm</a></td>
+                    <td><a href= "view.php?id=<?= $row['request_id'] ?>" class="viewBtn metoBtnn rounded-pill btn">View</a></td>
+                    <td> <a href="../handlers/metro_confirm.php?id=<?= $row['request_id']?>" class="viewBtn metoBtnn rounded-pill btn" >Confirm</a></td>
                   </tr>
                 <?php
                     }

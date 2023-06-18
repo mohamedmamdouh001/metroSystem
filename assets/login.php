@@ -22,7 +22,7 @@ session_start();
   
     <!-- start nav bar  -->
     <div>
-      <nav class="navbar navbar-expand-lg navbar-light  p-3 sticky-top">
+      <nav class="navbar navbar-expand-lg navbar-light  p-3 sticky-top" style="background-color: #9d9d9d;">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="sassPract/css/img/studentImg/istanbul-metro-logo.png" alt="" width="50" height="40" class="d-inline-block align-text-top ">
@@ -42,6 +42,8 @@ session_start();
       </div>
   <!-- end navbar ------ -->
   <!-- start landing ----- -->
+  <div class="loginBackground">
+
   <div class="container ">
     <div class="row ">
       <div class="col d-flex justify-content-center align-items-center p-3 ">
@@ -77,6 +79,7 @@ session_start();
       </div>
    
     </div>
+  </div>
   </div>
 
 <!-- end landing --------- -->

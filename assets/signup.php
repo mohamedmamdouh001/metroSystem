@@ -66,8 +66,8 @@ session_start();
             ?>
 
             <div class="mb-3 d-flex">
-              <input type="firstName" class="form-control inputStyle"placeholder="First name" id="firstNameSignUp" aria-describedby="emailHelp" name="First_name"  minlength="3" maxlength="25" pattern="[A-Za-z]">
-              <input type="lastName" class="form-control inputStyle"placeholder="Last name" id="lastNameSignUp" aria-describedby="emailHelp" name="Last_name" minlength="3" maxlength="25" pattern="[A-Za-z]">
+              <input type="firstName" class="form-control inputStyle"placeholder="First name" id="firstNameSignUp" aria-describedby="emailHelp" name="First_name"  pattern="[A-Za-z]{3,32}">
+              <input type="lastName" class="form-control inputStyle"placeholder="Last name" id="lastNameSignUp" aria-describedby="emailHelp" name="Last_name"  pattern="[A-Za-z]{3,32}">
             </div>
           <!-- Error message  -->
           <div class="mb-3">

@@ -45,18 +45,16 @@
     font-size: small;
 
 }
-.row .personalPhoto::after {
+.row .personalPhoto::after{
     position: relative;
     content: "UPLOAD";
     right: -46px;
-    top: 0;
-    padding: 4px;
+    padding: 5px;
     background-color: #0ab6a1;
     color: white;
     border-radius: 12px;
     -webkit-border-radius: 12px;
     font-size: small;
-  
 }
 .row .personalPhoto:focus,
 .row .personalPhoto:hover,

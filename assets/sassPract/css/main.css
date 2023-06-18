@@ -30,8 +30,8 @@
 .btnn {
   font-size: 20px;
   padding: 1px 10px 1px 10px;
-  border: 2px solid #0ab69f;
-  background-color: #0ab69f;
+  border: 2px solid #65e1e0;
+  background-color: #65e1e0;
   color: white;
   width: -moz-fit-content !important;
   width: fit-content !important;
@@ -189,6 +189,7 @@
 }
 
 .logIn-signUpForm {
+  background: linear-gradient(135deg, #9d9d9d, #dedede);
   display: flex;
   border: 2px solid #bbdae8;
   flex-direction: column;
@@ -208,6 +209,11 @@
 
 .hide {
   display: none;
+}
+
+.loginBackground {
+  background-color: #dedede;
+  height: 100vh;
 }
 
 .verifyForm {
@@ -286,8 +292,7 @@
   position: relative;
   content: "UPLOAD";
   right: -46px;
-  top: 0;
-  padding: 4px;
+  padding: 5px;
   background-color: #0ab6a1;
   color: white;
   border-radius: 12px;

@@ -136,7 +136,7 @@ if(isset($_POST['pay-visa'])){
           </div>
           <div class="mb-3" id="nameDetails">
             <label for="name" class="form-label">Cardholder Name</label>
-            <input type="text" class="form-control payInp" id="name" placeholder="Enter cardholder name" required >
+            <input type="text" class="form-control payInp" id="name" placeholder="Enter cardholder name" required  pattern="[A-Za-z]{3,32}">
   
             <input type="hidden" name="student-id" value="<?=$id?>" >
           </div>

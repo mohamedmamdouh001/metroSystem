@@ -44,6 +44,7 @@ $medium: 900px;
 }
 
 .logIn-signUpForm{
+    background: linear-gradient(135deg, #9d9d9d, #dedede);
     display: flex;
     border: 2px solid #bbdae8;
     flex-direction: column;
@@ -51,7 +52,7 @@ $medium: 900px;
     align-items: center;
     margin: 30px 10px;
     border-radius: 5%;
-    box-shadow: 4px 5px #88888830;
+    box-shadow: 4px 5px rgba(136, 136, 136, 0.1882352941);
 }
 #gender{
     height: 25px;
@@ -61,4 +62,8 @@ $medium: 900px;
 }
 .hide{
     display: none;
+}
+.loginBackground{
+    background-color: #dedede;
+    height: 100vh;
 }

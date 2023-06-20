@@ -103,14 +103,14 @@ $row = mysqli_fetch_assoc($result);
         </tr>
       <tr> 
          <th scope="row ">Personal image</th> 
-          <td> <img src="../student_img/personal_img/<?=$row['personal_img']?> " class="w-25 img-fluid rounded-circle mb-2" alt="admin"></td> 
+          <td> <img src="../student_img/personal_img/<?=$row['personal_img']?> " class="w-25 img-fluid  mb-2" alt="admin"></td> 
         </tr>
       <tr> 
          <th scope="row ">Id photo</th>  
-         <td> <img src="../student_img/personal_img/<?=$row['id_card_img']?> " class="w-25 img-fluid rounded-circle mb-2" alt="admin"></td>
+         <td> <img src="../student_img/edu_id/<?=$row['id_card_img']?> " class="w-25 img-fluid mb-2" alt="admin"></td>
         </tr>
       <tr>  
-        <th scope="row ">National Id photo</th>  <td> <img src="../student_img/personal_img/<?=$row['identity_img']?> " class="w-25 img-fluid rounded-circle mb-2" alt="admin">
+        <th scope="row ">National Id photo</th>  <td> <img src="../student_img/national_id/<?=$row['identity_img']?> " class="w-25 img-fluid  mb-2" alt="admin">
         </td>
       </tr>
       <tr>  
@@ -118,7 +118,7 @@ $row = mysqli_fetch_assoc($result);
         <td>
           <?php
             if (str_contains($row['payment_method'], "jpg") || str_contains($row['payment_method'], "jpeg")) { ?>
-              <img src="../student_img/personal_img/<?=$row['payment_method']?> " class="w-25 img-fluid rounded-circle mb-2" alt="admin">
+              <img src="../payment_fawry/<?=$row['payment_method']?> " class="w-25 img-fluid  mb-2" alt="admin">
           <?php
             } else{ 
               echo "Payed by ". $row['payment_method'];

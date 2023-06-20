@@ -65,7 +65,7 @@ session_start();
             unset($_SESSION['error']);
             }
             ?>
-7\
+
 
             <div class="mb-3 d-flex">
               <input type="firstName" class="form-control inputStyle"placeholder="First name" id="firstNameSignUp" aria-describedby="emailHelp" name="First_name"  pattern="[A-Za-z]{3,32}">

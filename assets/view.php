@@ -120,7 +120,7 @@ $row = mysqli_fetch_assoc($result);
             if (str_contains($row['payment_method'], "jpg") || str_contains($row['payment_method'], "jpeg")) { ?>
               <img src="../payment_fawry/<?=$row['payment_method']?> " class="w-25 img-fluid  mb-2" alt="admin">
           <?php
-            } else{ 
+            } elseif(isset($row['payment_method'])){ 
               echo "Payed by ". $row['payment_method'];
             }
           ?>
